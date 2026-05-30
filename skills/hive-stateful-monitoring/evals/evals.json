@@ -1,0 +1,49 @@
+{
+  "skill_name": "hive-stateful-monitoring",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Watch this Ethereum wallet and alert me when it transfers more than $100k.",
+      "expected_output": "Uses stateful_monitoring, creates or updates a wallet monitor with an Ethereum address target, a large-transfer rule, and a durable cadence.",
+      "files": [],
+      "assertions": [
+        "Chooses stateful_monitoring.",
+        "Maps the request to a wallet monitor target.",
+        "States that Hive workers execute the monitor later."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show me the crypto monitors Hive already remembers and pause the one watching PEPE.",
+      "expected_output": "Lists existing monitors before mutation, identifies the relevant token monitor, and updates its status to paused instead of creating a duplicate.",
+      "files": [],
+      "assertions": [
+        "Calls hive_list_monitors before updating.",
+        "Uses hive_update_monitor for pause behavior.",
+        "Does not claim success if auth or persistence is unavailable."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Summarize what changed on my ETH whale wallet monitor and show open alerts.",
+      "expected_output": "Uses the stateful monitoring report/read tools to fetch monitor runs, observations, alerts, and latest snapshot before summarizing changed state.",
+      "files": [],
+      "assertions": [
+        "Chooses stateful_monitoring.",
+        "Uses hive_generate_monitor_report or the read tools for observations, alerts, runs, and latest snapshot.",
+        "Does not invent monitor history if the persistence backend is unavailable."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Remember that I care most about protocol revenue growth, then include that context in future Aave monitor reports.",
+      "expected_output": "Persists the preference with hive_remember_fact in the protocol or default namespace and uses monitor reports for future summaries.",
+      "files": [],
+      "assertions": [
+        "Uses hive_remember_fact for durable user-scoped memory.",
+        "Does not encode the preference only in the chat transcript.",
+        "Uses hive_generate_monitor_report when asked for future monitor context."
+      ]
+    }
+  ]
+}

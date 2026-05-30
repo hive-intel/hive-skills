@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-network-infrastructure",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Check whether this Ethereum transaction succeeded and summarize the receipt evidence.",
+      "expected_output": "Uses network_infrastructure, asks for chain/tx hash if missing, inspects receipt schema, and reports block/freshness/runtime status.",
+      "files": [],
+      "assertions": [
+        "Chooses network_infrastructure.",
+        "Requires chain and transaction hash.",
+        "Reports receipt/block evidence."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "What's current gas on Base and are RPC reads healthy?",
+      "expected_output": "Uses current chain/gas/RPC diagnostics, labels provider/source, and avoids broad health claims without diagnostics.",
+      "files": [],
+      "assertions": [
+        "Uses gas or network state workflow.",
+        "Reports provider/source.",
+        "Caveats health based on available diagnostics."
+      ]
+    }
+  ]
+}

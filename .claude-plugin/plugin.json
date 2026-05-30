@@ -1,0 +1,111 @@
+{
+  "name": "hive-agent-skills",
+  "version": "1.0.0",
+  "description": "Hive Intelligence skills for Claude Code, Cursor, Codex, and other agents. Covers Hive MCP setup, tool discovery, crypto workflows, CLI flows, and PKCE-based authentication. Install via `npx -y -p hive-intelligence@latest hive init --all --browser` or copy the packs into the target agent skills directory.",
+  "author": {
+    "name": "Hive Intelligence",
+    "url": "https://www.hiveintelligence.xyz",
+    "email": "support@hiveintelligence.xyz"
+  },
+  "homepage": "https://www.hiveintelligence.xyz",
+  "repository": "https://github.com/hive-intel/hive-skills",
+  "license": "MIT",
+  "mcpServers": "./.mcp.json",
+  "skills": [
+    {
+      "name": "hive-cli",
+      "path": "../skills/hive-cli/SKILL.md",
+      "description": "Use the `hive` CLI inline from a chat — query prices, scan wallets, check token security, automate briefings."
+    },
+    {
+      "name": "hive-mcp",
+      "path": "../skills/hive-mcp/SKILL.md",
+      "description": "Add Hive's MCP server to Claude Code, Cursor, VS Code, Windsurf, Claude Desktop, ChatGPT, or Gemini CLI. Per-client instructions."
+    },
+    {
+      "name": "hive-build-onboarding",
+      "path": "../skills/hive-build-onboarding/SKILL.md",
+      "description": "Walk the user through PKCE-based browser auth. Use when the user has no API key or cannot find theirs."
+    },
+    {
+      "name": "hive-build",
+      "path": "../skills/hive-build/SKILL.md",
+      "description": "Integrate Hive into app code via REST or MCP SDK. Python, TypeScript, Go, Java, Rust patterns with retry / async / typed responses."
+    },
+    {
+      "name": "hive-query",
+      "path": "../skills/hive-query/SKILL.md",
+      "description": "Route crypto questions through canonical task toolsets, schema lookup, and exact tool invocation."
+    },
+    {
+      "name": "hive-tool-discovery",
+      "path": "../skills/hive-tool-discovery/SKILL.md",
+      "description": "Find the right Hive tool, task toolset, schema, or endpoint before execution."
+    },
+    {
+      "name": "hive-market-research",
+      "path": "../skills/hive-market-research/SKILL.md",
+      "description": "Research live prices, liquidity, exchanges, OHLC, order books, funding rates, and derivatives."
+    },
+    {
+      "name": "hive-token-diligence",
+      "path": "../skills/hive-token-diligence/SKILL.md",
+      "description": "Investigate token metadata, market context, liquidity, holders, enrichment, and risk."
+    },
+    {
+      "name": "hive-wallet-investigation",
+      "path": "../skills/hive-wallet-investigation/SKILL.md",
+      "description": "Inspect wallet balances, transfers, NFTs, PnL, DeFi positions, and notable activity."
+    },
+    {
+      "name": "hive-security-risk",
+      "path": "../skills/hive-security-risk/SKILL.md",
+      "description": "Check token, approval, address, dApp, phishing, contract, and simulation risk."
+    },
+    {
+      "name": "hive-dex-pool-analysis",
+      "path": "../skills/hive-dex-pool-analysis/SKILL.md",
+      "description": "Analyze pools, pairs, liquidity, trades, OHLCV, and DEX flow."
+    },
+    {
+      "name": "hive-defi-research",
+      "path": "../skills/hive-defi-research/SKILL.md",
+      "description": "Analyze DeFi protocols, TVL, fees, revenue, stablecoins, bridges, and yields."
+    },
+    {
+      "name": "hive-nft-research",
+      "path": "../skills/hive-nft-research/SKILL.md",
+      "description": "Research NFT collections, ownership, metadata, floors, sales, rarity, and spam checks."
+    },
+    {
+      "name": "hive-solana-analysis",
+      "path": "../skills/hive-solana-analysis/SKILL.md",
+      "description": "Analyze Solana wallets, SPL accounts, DAS assets, parsed transactions, and priority fees."
+    },
+    {
+      "name": "hive-network-infrastructure",
+      "path": "../skills/hive-network-infrastructure/SKILL.md",
+      "description": "Read chain state, gas, blocks, receipts, logs, transaction status, and RPC diagnostics."
+    },
+    {
+      "name": "hive-prediction-markets",
+      "path": "../skills/hive-prediction-markets/SKILL.md",
+      "description": "Research prediction markets, events, outcomes, market stats, traders, holders, and trades."
+    },
+    {
+      "name": "hive-stateful-monitoring",
+      "path": "../skills/hive-stateful-monitoring/SKILL.md",
+      "description": "Create, list, update, and archive durable crypto monitors, alerts, scheduled reports, and agent memory."
+    }
+  ],
+  "tags": [
+    "crypto",
+    "mcp",
+    "api",
+    "agent-skill",
+    "defi",
+    "wallet-analytics",
+    "token-security",
+    "solana"
+  ]
+}

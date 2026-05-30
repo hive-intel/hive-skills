@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-defi-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Compare Aave and Compound by current TVL, fees, and yield context.",
+      "expected_output": "Uses defi_protocol_analysis, resolves protocol slugs, fetches like-for-like metrics with timestamps, and marks missing/stale data.",
+      "files": [],
+      "assertions": [
+        "Chooses defi_protocol_analysis.",
+        "Normalizes metrics and timestamps.",
+        "Caveats missing or stale metrics."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "What are the top DeFi protocols on Arbitrum right now?",
+      "expected_output": "Uses chain-level DeFi metrics with bounded limit, reports provider/freshness/runtime status, and avoids unsupported investment recommendations.",
+      "files": [],
+      "assertions": [
+        "Uses chain-level DeFi workflow.",
+        "Bounds the result list.",
+        "Reports provider and freshness."
+      ]
+    }
+  ]
+}

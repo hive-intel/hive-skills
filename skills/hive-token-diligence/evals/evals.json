@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-token-diligence",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run diligence on this Ethereum token contract before I trade it: 0x0000000000000000000000000000000000000000",
+      "expected_output": "Uses token_diligence, preserves exact chain/contract, plans metadata/liquidity/holder/risk checks, and reports caveats without trading advice.",
+      "files": [],
+      "assertions": [
+        "Chooses token_diligence.",
+        "Requires exact chain and contract.",
+        "Includes liquidity and risk evidence sections."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Is this token real or a scam? I only have the ticker.",
+      "expected_output": "Does not assume a contract from ticker alone, asks for chain/contract or performs discovery, and explains ambiguity.",
+      "files": [],
+      "assertions": [
+        "Does not treat ticker as unique.",
+        "Asks for chain and contract or resolves explicitly.",
+        "Avoids unsupported safety conclusion."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "skill_name": "hive-tool-discovery",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I know Hive has a lot of tools. Which one should I use to get token holders for an Ethereum contract?",
+      "expected_output": "Uses discovery before execution, searches token holder intent, selects the most specific endpoint, and inspects the endpoint schema.",
+      "files": [],
+      "assertions": [
+        "Calls or recommends search_tools with token holders, ethereum, contract.",
+        "Uses get_api_endpoint_schema before invocation.",
+        "Does not hardcode an endpoint without discovery."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show me all the ways an agent can discover Hive MCP endpoints and provider availability.",
+      "expected_output": "Explains resources, meta tools, category listing tools, schema lookup, and runtime status surfaces.",
+      "files": [],
+      "assertions": [
+        "Mentions hive://toolsets, hive://tools, hive://providers, and hive://status.",
+        "Mentions search_tools, get_api_endpoint_schema, and invoke_api_endpoint.",
+        "Separates discovery from execution."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A Hive provider is missing an API key. Should the agent say the tool does not exist?",
+      "expected_output": "Classifies missing keys as runtime availability, not catalog absence, and tells the user the provider/tool state and next action.",
+      "files": [],
+      "assertions": [
+        "Explains missing_key as a runtime state.",
+        "Does not describe the endpoint as unavailable from the catalog.",
+        "Gives an actionable diagnostic step."
+      ]
+    }
+  ]
+}

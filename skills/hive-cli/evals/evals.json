@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-cli",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Give me a terminal command to check Bitcoin and Ethereum prices with Hive and pipe the result into jq.",
+      "expected_output": "Uses Hive CLI market command, JSON output, jq extraction, and avoids embedding API keys in the command.",
+      "files": [],
+      "assertions": [
+        "Uses the hive CLI.",
+        "Pipes output into jq.",
+        "Does not inline a real API key."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up a daily shell briefing with Hive that I can run from cron.",
+      "expected_output": "Provides a shell script pattern, cron example, HIVE_API_KEY/env guidance, and JSON-safe output handling.",
+      "files": [],
+      "assertions": [
+        "Includes a cron-compatible command or script.",
+        "Mentions HIVE_API_KEY or hive auth status.",
+        "Uses bounded CLI queries."
+      ]
+    }
+  ]
+}

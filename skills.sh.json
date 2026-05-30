@@ -1,0 +1,41 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Setup and Build",
+      "description": "Skills for installing Hive MCP, getting API keys, using the Hive CLI, and integrating Hive into application code.",
+      "skills": [
+        "hive-mcp",
+        "hive-build-onboarding",
+        "hive-cli",
+        "hive-build"
+      ]
+    },
+    {
+      "title": "Discovery and Routing",
+      "description": "Skills that teach agents how to discover task toolsets, inspect schemas, and execute bounded Hive MCP calls.",
+      "skills": [
+        "hive-query",
+        "hive-tool-discovery"
+      ]
+    },
+    {
+      "title": "Crypto Research Workflows",
+      "description": "Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, prediction-market, and stateful monitoring analysis.",
+      "skills": [
+        "hive-market-research",
+        "hive-token-diligence",
+        "hive-wallet-investigation",
+        "hive-security-risk",
+        "hive-dex-pool-analysis",
+        "hive-defi-research",
+        "hive-nft-research",
+        "hive-solana-analysis",
+        "hive-network-infrastructure",
+        "hive-prediction-markets",
+        "hive-stateful-monitoring"
+      ]
+    }
+  ]
+}

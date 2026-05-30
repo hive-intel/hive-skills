@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-dex-pool-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analyze the main Uniswap pool for this token and summarize liquidity and recent flow.",
+      "expected_output": "Uses onchain_dex_pool_analysis, resolves chain/token/pool, fetches bounded pool/liquidity/trade data, and separates pool facts from token facts.",
+      "files": [],
+      "assertions": [
+        "Chooses onchain_dex_pool_analysis.",
+        "Resolves pool or asks for enough identifiers.",
+        "Caveats pool-specific liquidity."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Find which pool has the most relevant liquidity for this token contract.",
+      "expected_output": "Searches candidate pools, uses bounded limits, chooses based on liquidity/volume evidence, and reports provider/freshness.",
+      "files": [],
+      "assertions": [
+        "Searches candidate pools before choosing.",
+        "Uses liquidity or volume evidence.",
+        "Reports source and freshness."
+      ]
+    }
+  ]
+}

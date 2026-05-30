@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-market-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "What's the live BTC price, recent liquidity context, and source freshness?",
+      "expected_output": "Routes to market_research, resolves BTC to a provider-supported id, inspects schemas, makes bounded price/liquidity calls, and reports provider/freshness/runtime status.",
+      "files": [],
+      "assertions": [
+        "Chooses market_research.",
+        "Uses schema lookup before execution.",
+        "Reports provider and freshness."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Check the SOL order book on Kraken and tell me if liquidity is thin.",
+      "expected_output": "Requires or uses explicit venue id, performs venue-specific order book lookup, bounds depth, and avoids market-wide claims from one venue.",
+      "files": [],
+      "assertions": [
+        "Treats Kraken as a venue-specific request.",
+        "Bounds order book depth.",
+        "Caveats venue-specific liquidity."
+      ]
+    }
+  ]
+}

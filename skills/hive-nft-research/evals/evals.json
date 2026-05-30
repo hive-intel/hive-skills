@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-nft-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Research this NFT collection's floor, recent sales, owners, and metadata freshness.",
+      "expected_output": "Uses nft_research, asks for or resolves chain/collection contract, fetches bounded floor/sales/owner/metadata data, and reports marketplace/provider caveats.",
+      "files": [],
+      "assertions": [
+        "Chooses nft_research.",
+        "Requires chain and collection/asset identifier.",
+        "Reports floor/sales metadata caveats."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Is this NFT in my wallet spam or a legitimate asset?",
+      "expected_output": "Routes to NFT ownership/metadata/spam checks, preserves wallet and asset identifiers, and avoids unsupported authenticity claims.",
+      "files": [],
+      "assertions": [
+        "Includes spam/authenticity workflow.",
+        "Uses wallet and asset identifiers.",
+        "Avoids absolute legitimacy claims without evidence."
+      ]
+    }
+  ]
+}

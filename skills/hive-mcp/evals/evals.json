@@ -1,0 +1,38 @@
+{
+  "skill_name": "hive-mcp",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up Hive MCP in Cursor and make sure the agent also gets Hive skills.",
+      "expected_output": "Provides Cursor MCP config for hosted HTTP, Authorization header format, reload step, and skills install path.",
+      "files": [],
+      "assertions": [
+        "Uses https://mcp.hiveintelligence.xyz/mcp.",
+        "Shows Authorization: Bearer YOUR_HIVE_API_KEY.",
+        "Mentions Hive skills installation or package."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Should I use hosted Hive MCP or local stdio for Claude Desktop?",
+      "expected_output": "Recommends hosted remote MCP by default and local stdio for development, self-hosting, local-only clients, or provider-key experiments.",
+      "files": [],
+      "assertions": [
+        "States hosted remote MCP is the default product path.",
+        "Explains when stdio is appropriate.",
+        "Includes verification guidance."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "How many Hive npm packages should we publish for MCP, adapters, and skills?",
+      "expected_output": "Separates server/CLI, typed client adapter, skills-only package, and compatibility CLI/docs surface with clear package responsibilities.",
+      "files": [],
+      "assertions": [
+        "Mentions hive-intelligence and the hive CLI.",
+        "Mentions @hiveintelligence/mcp-client.",
+        "Mentions @hiveintelligence/agent-skills."
+      ]
+    }
+  ]
+}

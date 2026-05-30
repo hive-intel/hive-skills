@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-build-onboarding",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I do not have a Hive API key. Walk me through getting one on my laptop without pasting secrets into chat.",
+      "expected_output": "Uses PKCE browser flow first, avoids exposing secrets, and explains fallback dashboard setup for headless environments.",
+      "files": [],
+      "assertions": [
+        "Recommends npx -y -p hive-intelligence@latest hive init --browser.",
+        "Warns not to paste or commit API keys.",
+        "Provides headless fallback via dashboard and HIVE_API_KEY."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm setting Hive up in CI over SSH. Browser auth will not work. What should I do?",
+      "expected_output": "Routes to dashboard copy-paste flow, stores key in CI secret manager, and avoids clipboard/log exposure.",
+      "files": [],
+      "assertions": [
+        "Recognizes browser flow is unsuitable for CI or SSH.",
+        "Mentions HIVE_API_KEY and secret manager storage.",
+        "Does not request the user paste the secret into the chat."
+      ]
+    }
+  ]
+}

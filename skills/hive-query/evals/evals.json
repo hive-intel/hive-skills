@@ -1,0 +1,38 @@
+{
+  "skill_name": "hive-query",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use Hive MCP to investigate whether wallet 0x0000000000000000000000000000000000000000 has meaningful Ethereum token activity. Show the tools you would call and the caveats.",
+      "expected_output": "Routes through wallet_investigation, requests or infers eth-mainnet, looks up schemas before exact endpoint calls, avoids inventing activity, and reports provider/runtime/freshness caveats.",
+      "files": [],
+      "assertions": [
+        "Mentions wallet_investigation or the wallet task toolset.",
+        "Uses get_api_endpoint_schema before invoke_api_endpoint.",
+        "Reports provider/runtime status and does not answer from memory."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A user pasted an Ethereum token contract and asks if it is safe and liquid enough to trade. What Hive workflow should the agent use?",
+      "expected_output": "Combines token_diligence and security_risk only as needed, asks for or preserves the exact contract address and chain, inspects schemas, and plans bounded calls.",
+      "files": [],
+      "assertions": [
+        "Chooses token_diligence and/or security_risk.",
+        "Requires exact contract address and chain.",
+        "Includes provenance, liquidity, and risk reporting expectations."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Find active prediction markets about the next US Fed decision and summarize the top outcomes with source caveats.",
+      "expected_output": "Routes to prediction_markets, searches for market/event tools, inspects schemas, bounds result limits, and cites source, freshness, and missing data caveats.",
+      "files": [],
+      "assertions": [
+        "Chooses prediction_markets.",
+        "Uses search_tools or hive://toolsets before endpoint selection.",
+        "Reports freshness and source caveats."
+      ]
+    }
+  ]
+}

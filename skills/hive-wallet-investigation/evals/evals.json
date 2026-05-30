@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-wallet-investigation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Investigate this Ethereum wallet's balances and recent transfers: 0x0000000000000000000000000000000000000000",
+      "expected_output": "Uses wallet_investigation, validates chain/address, starts with balances, adds bounded recent transfers, and reports source/freshness/runtime status.",
+      "files": [],
+      "assertions": [
+        "Chooses wallet_investigation.",
+        "Starts with balances/native balance.",
+        "Bounds transfer history."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "This EVM wallet might be active on several chains. Can you inspect it?",
+      "expected_output": "Asks whether the user wants a specific chain or multi-chain scope, avoids silently mixing chains, and labels each provider/source.",
+      "files": [],
+      "assertions": [
+        "Asks for chain scope or states multi-chain plan.",
+        "Does not silently mix chain data.",
+        "Reports provider/runtime caveats."
+      ]
+    }
+  ]
+}

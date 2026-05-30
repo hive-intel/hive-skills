@@ -1,0 +1,27 @@
+{
+  "skill_name": "hive-security-risk",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Is it safe to approve this spender for my ERC-20 token?",
+      "expected_output": "Uses security_risk, asks for chain/token/owner/spender if missing, checks approval risk, and avoids signing guidance until risk is resolved.",
+      "files": [],
+      "assertions": [
+        "Chooses security_risk.",
+        "Requests missing approval identifiers.",
+        "Does not tell the user to sign while risk is unresolved."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Check whether this dApp URL and contract look phishing-related before I connect my wallet.",
+      "expected_output": "Routes to dApp/address/phishing checks, reports severity/evidence/remediation, and caveats missing provider data.",
+      "files": [],
+      "assertions": [
+        "Includes phishing or dApp risk checks.",
+        "Reports severity and evidence.",
+        "Provides remediation or next action."
+      ]
+    }
+  ]
+}

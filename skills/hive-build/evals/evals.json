@@ -1,0 +1,28 @@
+{
+  "skill_name": "hive-build",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a TypeScript server helper that calls Hive safely from a Next.js API route.",
+      "expected_output": "Uses @hiveintelligence/mcp-client on the server side with HIVE_API_KEY, schema/tool discovery helpers, timeout/retry/error handling, provenance-aware metadata handling, and no client-side secret exposure. REST is mentioned only as a fallback.",
+      "files": [],
+      "assertions": [
+        "Uses @hiveintelligence/mcp-client as the primary TypeScript path.",
+        "Keeps HIVE_API_KEY server-side.",
+        "Includes retry or error handling guidance.",
+        "Preserves provider/freshness/runtime metadata."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need a Python cron job that fetches Hive crypto data daily and writes a JSON report.",
+      "expected_output": "Uses REST execute endpoint, environment auth, bounded calls, retry/backoff, JSON output, and provenance-aware response handling.",
+      "files": [],
+      "assertions": [
+        "Uses environment variable auth.",
+        "Explains 429 and 5xx retry behavior.",
+        "Mentions provider/freshness/runtime metadata in output handling."
+      ]
+    }
+  ]
+}
