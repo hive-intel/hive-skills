@@ -30,7 +30,7 @@
       "files": [],
       "assertions": [
         "Mentions hive-intelligence and the hive CLI.",
-        "Mentions @hiveintelligence/mcp-client.",
+        "Mentions hive-mcp-client.",
         "Mentions @hiveintelligence/agent-skills."
       ]
     }

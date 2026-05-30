@@ -28,7 +28,7 @@ END_USER_ID + "\n" + TIMESTAMP` with HMAC-SHA256 and send the
 `X-Hive-Tenant-Id`, `X-Hive-End-User-Id`, `X-Hive-Subject-Timestamp`, and
 `X-Hive-Subject-Signature` headers. Never ask the model or end user to provide
 `__hive_user_id` or `__hive_subject_id`; those are hidden server-injected args.
-In TypeScript backends, use `@hiveintelligence/mcp-client` with
+In TypeScript backends, use `hive-mcp-client` with
 `subjectSigningSecret` and per-call `subject`/`withSubject(...)` context instead
 of hand-building these headers.
 

@@ -21,7 +21,7 @@ instead. If they're adding Hive to an MCP-capable client, route to
 
 ## Integration path
 
-- **TypeScript / custom app default** — `@hiveintelligence/mcp-client`
+- **TypeScript / custom app default** — `hive-mcp-client`
 - **MCP transport** — `https://mcp.hiveintelligence.xyz/mcp`
 - **REST fallback base** — `https://mcp.hiveintelligence.xyz/api/v1`
 - **REST execute** — `POST /execute` with `{"tool": "...", "args": {...}}`
@@ -102,7 +102,7 @@ root MCP contract, auth headers, schema lookup, endpoint invocation, retries,
 metadata resources, and normalized result parsing.
 
 ```bash
-npm install @hiveintelligence/mcp-client
+npm install hive-mcp-client
 ```
 
 ```ts
@@ -111,7 +111,7 @@ import {
   getHiveEndpointSchema,
   invokeHiveEndpoint,
   readHiveMetadataSnapshot,
-} from "@hiveintelligence/mcp-client";
+} from "hive-mcp-client";
 
 export async function getBtcPrice() {
   const hive = await createHiveMcpClient({
@@ -255,7 +255,7 @@ throw ExhaustedRetries()
 Don't hardcode tool schemas. In TypeScript, use the adapter:
 
 ```ts
-import { searchHiveTools, getHiveEndpointSchema } from "@hiveintelligence/mcp-client";
+import { searchHiveTools, getHiveEndpointSchema } from "hive-mcp-client";
 
 const matches = await searchHiveTools(hive, { query: "wallet risk", limit: 20 });
 const schema = await getHiveEndpointSchema(hive, "get_address_risk");
@@ -280,12 +280,12 @@ POST /api/v1/execute
 
 ## Frameworks
 
-- **LangChain** — use `@hiveintelligence/mcp-client/langchain` or
+- **LangChain** — use `hive-mcp-client/langchain` or
   `langchain-mcp-adapters` to expose Hive tools. Connect to
   `https://mcp.hiveintelligence.xyz/mcp` with the auth header.
 - **CrewAI** — same pattern; CrewAI accepts MCP servers via the
   generic adapter.
-- **Vercel AI SDK** — use `@hiveintelligence/mcp-client/ai-sdk` helpers to
+- **Vercel AI SDK** — use `hive-mcp-client/ai-sdk` helpers to
   build the MCP transport config and select only the compact/ranked Hive tools
   the model needs.
 - **Spring Boot** — register the Java `HiveClient` as a `@Bean`,
