@@ -1,6 +1,6 @@
 ---
 name: hive-tool-discovery
-description: Use this skill when the exact Hive MCP tool, task toolset, provider, endpoint name, schema, or argument shape is unknown. Discover first with Hive resources and search_tools, then inspect schema before any invoke_api_endpoint call.
+description: Use this skill only when the exact Hive MCP tool, task toolset, provider, endpoint name, schema, or argument shape is unknown and hive-query routing was not enough. Discover first with Hive resources and search_tools, then inspect schema before any invoke_api_endpoint call.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"

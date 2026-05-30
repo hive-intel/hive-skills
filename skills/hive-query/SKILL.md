@@ -1,6 +1,6 @@
 ---
 name: hive-query
-description: Use this skill for any live crypto intelligence question before answering from memory. Route wallet, token, DeFi, NFT, Solana, security, market, DEX, network, or prediction-market requests through Hive task toolsets, schema lookup, and bounded endpoint invocation.
+description: Use this skill as the default entry point for any live crypto intelligence question before answering from memory. Route wallet, token, DeFi, NFT, Solana, security, market, DEX, network, or prediction-market requests through Hive task toolsets and bounded endpoint invocation. If routing does not surface the exact tool or schema, hand off to hive-tool-discovery.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
