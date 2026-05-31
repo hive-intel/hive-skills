@@ -101,12 +101,27 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
 
 Reload Windsurf.
 
-## ChatGPT Desktop
+## OpenAI Responses API
 
-Paid tier required. Settings → Connectors → "Add MCP server" →
+Use Hive as a server-side remote MCP tool from your application code. Keep the
+Hive API key on your server and pass it in the remote MCP tool headers.
 
-- **URL** — `https://mcp.hiveintelligence.xyz/mcp`
-- **Auth header** — `Authorization: Bearer YOUR_HIVE_API_KEY`
+Direct ChatGPT app connector setup is beta and auth-dependent; do not promise a
+verified bearer-token ChatGPT app connector unless Hive has shipped the auth
+shape that workspace requires.
+
+## Codex CLI
+
+Edit `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.hive]
+url = "https://mcp.hiveintelligence.xyz/mcp"
+bearer_token_env_var = "HIVE_API_KEY"
+```
+
+Set `HIVE_API_KEY` in the shell that launches Codex, then verify with `codex
+/mcp` after restart.
 
 ## Gemini CLI
 

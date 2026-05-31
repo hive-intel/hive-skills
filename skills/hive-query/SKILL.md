@@ -73,7 +73,7 @@ Use this structure for Hive-backed answers:
 
 ## Evidence
 - Provider/source: [provider names]
-- Freshness: [timestamp, block/slot, or fetched_at when available]
+- Freshness: [Hive execution fetched_at plus provider timestamp, block, or slot when relevant]
 - Runtime status: [ok/missing_key/plan_required/rate_limited/degraded/failing]
 
 ## Caveats

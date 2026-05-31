@@ -1,6 +1,6 @@
 ---
 name: hive-build
-description: Use this skill when the user is integrating Hive into application code, backend services, agents, cron jobs, SDK adapters, or production systems rather than asking a one-off chat query. Covers the TypeScript MCP client adapter, REST fallback execution, retries, typed responses, schema discovery, and safe secret handling.
+description: Use this skill when the user is integrating Hive into application code, backend services, agents, cron jobs, source-controlled adapters, or production systems rather than asking a one-off chat query. Covers the TypeScript MCP client adapter `hive-mcp-client`, REST fallback execution, retries, typed responses, schema discovery, and safe secret handling.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
@@ -21,7 +21,7 @@ instead. If they're adding Hive to an MCP-capable client, route to
 
 ## Integration path
 
-- **TypeScript / custom app default** — `hive-mcp-client`
+- **TypeScript / custom app default** — `hive-mcp-client` (`npm install hive-mcp-client`)
 - **MCP transport** — `https://mcp.hiveintelligence.xyz/mcp`
 - **REST fallback base** — `https://mcp.hiveintelligence.xyz/api/v1`
 - **REST execute** — `POST /execute` with `{"tool": "...", "args": {...}}`
@@ -97,9 +97,10 @@ is the right default for research / reporting agents.
 
 ### TypeScript (Node, serverless, edge)
 
-Prefer the typed MCP adapter for TypeScript applications. It centralizes the
-root MCP contract, auth headers, schema lookup, endpoint invocation, retries,
-metadata resources, and normalized result parsing.
+Prefer the typed MCP adapter for TypeScript applications when you control the
+server application. It centralizes the root MCP contract, auth headers, schema
+lookup, endpoint invocation, retries, metadata resources, and normalized result
+parsing.
 
 ```bash
 npm install hive-mcp-client

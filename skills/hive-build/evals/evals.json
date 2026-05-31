@@ -4,10 +4,10 @@
     {
       "id": 1,
       "prompt": "Build a TypeScript server helper that calls Hive safely from a Next.js API route.",
-      "expected_output": "Uses hive-mcp-client on the server side with HIVE_API_KEY, schema/tool discovery helpers, timeout/retry/error handling, provenance-aware metadata handling, and no client-side secret exposure. REST is mentioned only as a fallback.",
+      "expected_output": "Uses the published `hive-mcp-client` adapter (npm install hive-mcp-client) for TypeScript apps, keeps HIVE_API_KEY server-side, includes schema/tool discovery helpers, timeout/retry/error handling, provenance-aware metadata handling, and no client-side secret exposure. For non-TypeScript stacks, uses the REST API.",
       "files": [],
       "assertions": [
-        "Uses hive-mcp-client as the primary TypeScript path.",
+        "Uses hive-mcp-client installed via `npm install hive-mcp-client`.",
         "Keeps HIVE_API_KEY server-side.",
         "Includes retry or error handling guidance.",
         "Preserves provider/freshness/runtime metadata."

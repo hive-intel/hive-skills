@@ -14,7 +14,7 @@ flowchart LR
   Root --> MetaTools["Meta tools: search_tools, get_api_endpoint_schema, invoke_api_endpoint"]
   Root --> Toolsets["Task toolsets"]
   MetaTools --> Registry["Provider endpoint registry"]
-  Registry --> Providers["CoinGecko, DeFiLlama, GoPlus, Codex, CCXT, Tenderly, Moralis, Helius, Alchemy, Polymarket"]
+  Registry --> Providers["CoinGecko, DeFiLlama, GoPlus, Codex (Polymarket/Kalshi), CCXT, Tenderly, Moralis, Helius, Alchemy"]
   Agent --> Answer["Answer with provenance, freshness, runtime status"]
 ```
 

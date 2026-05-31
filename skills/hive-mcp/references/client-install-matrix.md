@@ -14,7 +14,7 @@ provider keys, or using a desktop client that only supports local commands.
 | Package | Role | Who installs it |
 | --- | --- | --- |
 | `hive-intelligence` | MCP server, CLI, local stdio runtime, bundled skills installer. Exposes `hive`, `hive-intelligence`, and `hive-mcp` binaries. | End users, self-hosters, desktop clients |
-| `hive-mcp-client` | Typed adapter for apps and agent frameworks | Developers integrating Hive into code |
+| `hive-mcp-client` | Published typed adapter (npm) for apps and agent frameworks; install via `npm install hive-mcp-client`. | App/backend developers integrating Hive in TypeScript |
 | `@hiveintelligence/agent-skills` | Skills-only corpus for agents and skill registries | Agents, skill package managers, docs mirrors |
 | `hive-intel` | Packaged user-facing CLI/docs surface retained for compatibility | Existing CLI/docs consumers |
 

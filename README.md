@@ -80,7 +80,7 @@ Once installed, skills activate when the agent detects a relevant task. Each exa
 | "Show the top DeFi protocols by TVL and 7d fees." | `hive-defi-research` |
 | "Add Hive to Cursor and verify it works." | `hive-mcp` |
 
-Every answer reports provider provenance, data freshness, and runtime status.
+Answers should report provider provenance, data freshness, and runtime status.
 
 ## How it works
 
@@ -88,11 +88,11 @@ Each skill follows the [Agent Skills spec](https://agentskills.io): a `SKILL.md`
 
 ## Trust & provenance
 
-Data trust is the product. Skills surface the source provider, freshness, and degraded/cached/rate-limited runtime states on every answer, and never silently mix provider data. Missing provider keys return a classified `missing_key` state rather than a wrong answer.
+Data trust is the product. Skills surface the source provider, freshness, and degraded/cached/rate-limited runtime states in grounded answers, and avoid silently mixing provider data. Missing provider keys return a classified `missing_key` state rather than a wrong answer.
 
 ## Supported agents
 
-Claude Code, Claude Desktop, Cursor, VS Code (Copilot Chat), Codex, Windsurf, Gemini CLI, ChatGPT Desktop, and any client installable via `npx skills` or a `.claude-plugin` marketplace.
+Claude Desktop, Claude Code, Cursor, Windsurf, VS Code (Copilot Chat), OpenAI Responses API, Codex CLI, Gemini CLI, and agents installable via `npx skills` or a `.claude-plugin` marketplace.
 
 ## Contributing
 
