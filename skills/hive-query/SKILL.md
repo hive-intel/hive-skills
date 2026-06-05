@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "discovery"
   requires_network: "true"
-version: 2.0.0
+version: 1.0.0
 ---
 
 # hive-query — Route Crypto Questions Through Hive
