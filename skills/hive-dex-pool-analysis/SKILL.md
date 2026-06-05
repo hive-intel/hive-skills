@@ -1,6 +1,6 @@
 ---
 name: hive-dex-pool-analysis
-description: Use this skill for on-chain DEX and pool analysis covering pools, pairs, swaps, liquidity, trades, OHLCV, trending pools, and token-level DEX flow. Use exact chain, pair, pool, or token identifiers before selecting tools.
+description: Use this skill when the user asks about a DEX pool or trading pair, its liquidity depth, recent swaps or trades, OHLCV candles, trending pools, or token-level DEX flow on a given chain.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
