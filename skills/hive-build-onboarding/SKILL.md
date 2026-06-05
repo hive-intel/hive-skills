@@ -22,7 +22,7 @@ Hive uses passwordless magic-link auth — no username/password, no
 credit card to start. Free Demo tier: 10,000 credits/month, 30
 req/min.
 
-## Path 1 — PKCE browser flow (preferred)
+## Path 1 — browser sign-in (preferred)
 
 If the user has a browser available on the same machine as their
 terminal:
@@ -33,24 +33,22 @@ npx -y -p hive-intelligence@latest hive init --browser
 
 What happens:
 
-1. The CLI generates a PKCE code verifier + challenge locally.
-2. It starts a localhost listener on a random port.
-3. It opens the user's browser at
-   `https://www.hiveintelligence.xyz/auth/cli?code_challenge=<challenge>&port=<port>`.
-4. The user signs in with magic-link (one-time email link, no
+1. The CLI generates a random `state` token (CSRF guard) and starts a
+   localhost listener on a random port (`127.0.0.1`).
+2. It opens the user's browser at
+   `https://hiveintelligence.xyz/auth/cli?callback_port=<port>&state=<state>`.
+3. The user signs in with magic-link (one-time email link, no
    password). If they don't have an account, one is created.
-5. The marketing site exchanges the verified session for a fresh API
-   key + the original code challenge.
-6. The browser POSTs the key back to the localhost listener with the
-   matching verifier.
-7. The CLI stores the key in `~/.hive/credentials.json` with `0600`
-   permissions.
-8. The browser tab shows "You can close this window" and closes
-   itself.
+4. The site issues a fresh API key and redirects the browser to
+   `http://127.0.0.1:<port>/callback?key=<key>&email=<email>&state=<state>`.
+5. The CLI verifies the returned `state` matches (rejects on mismatch),
+   then stores the key in `~/.config/hive/credentials.json` with `0600`
+   permissions (override the directory with `HIVE_CONFIG_DIR`).
+6. The browser tab shows an "Authenticated" page the user can close.
 
 The key never lives on the clipboard. If a step fails, the CLI
 surfaces the exact error (port collision, browser refused to open,
-verifier mismatch).
+`state` mismatch, or a 5-minute timeout).
 
 ## Path 2 — Dashboard copy-paste (fallback for headless)
 
@@ -106,8 +104,8 @@ curl -H "Authorization: Bearer $HIVE_API_KEY" \
   https://mcp.hiveintelligence.xyz/api/v1/tools?limit=1
 ```
 
-A successful `doctor` shows `API key: configured` and
-`Connectivity: ok`. A successful curl returns `{"data": [...], ...}`.
+A successful `doctor` reports its `HIVE_API_KEY` and `Server health`
+checks as OK. A successful curl returns `{"ok": true, "data": [...], ...}`.
 If you see HTTP 401 or JSON-RPC `-32001`, the key is wrong or
 disabled.
 
