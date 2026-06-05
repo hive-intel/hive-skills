@@ -1,6 +1,6 @@
 ---
 name: hive-prediction-markets
-description: Use this skill for prediction market research covering Polymarket, Kalshi, events, markets, outcomes, odds, prices, liquidity, stats, traders, holders, and trades. Never present market probability as ground truth.
+description: Use this skill when the user asks about Polymarket or Kalshi prediction markets — events, markets, outcomes, odds, prices, liquidity, stats, traders, holders, or trades. Never present market probability as ground truth.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
@@ -29,7 +29,7 @@ market report.
 
 1. Search/filter markets or events when the user starts with a topic.
 2. Resolve exact market/event/token ids before stats, holders, or trades.
-3. Report market price, volume/liquidity, outcomes, and freshness.
+3. Report market price, volume/liquidity, outcomes, provider/source, and freshness.
 4. Do not present market probability as ground truth.
 
 ## Example
