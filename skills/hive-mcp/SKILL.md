@@ -1,6 +1,6 @@
 ---
 name: hive-mcp
-description: Use this skill when installing, configuring, or debugging Hive MCP in Claude Desktop, Claude Code, Cursor, Windsurf, VS Code, OpenAI Responses API, Codex CLI, or Gemini CLI. Includes hosted-vs-stdio guidance, API-key auth headers, skills installation, and verification.
+description: Use this skill when installing, configuring, or debugging Hive MCP in an AI client such as Claude Desktop, Claude Code, Cursor, Windsurf, VS Code, Gemini CLI, the OpenAI Responses API, or Codex CLI.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
@@ -37,8 +37,10 @@ wants Hive everywhere:
 npx -y -p hive-intelligence@latest hive init --all --browser
 ```
 
-This detects every client on the machine, registers Hive in each
-config, and runs PKCE browser auth. Recommended.
+This auto-configures the six clients the CLI can write config for —
+Claude Code, Claude Desktop, Cursor, VS Code, Windsurf, and Gemini CLI —
+and runs the browser sign-in. Codex CLI and the OpenAI Responses API are
+set up separately (see below); `init --all` does not configure them.
 
 For agents that support standalone skills, install or copy the Hive skills
 after MCP is connected. In this repo, validate the package locally before
@@ -56,10 +58,11 @@ strategy, hosted-vs-stdio tradeoffs, or package boundaries.
 
 Each client or API path uses the same endpoint and API-key auth concept; only
 the config path, JSON shape, or server-side `tools` entry differs. Read
-`references/clients.md` and follow the block for the user's specific path — it
-covers Claude Desktop, Claude Code, Cursor, Windsurf, VS Code, OpenAI Responses
-API, Codex CLI, and Gemini CLI. If the user has several local clients, use the
-one-command fast path above instead.
+`references/clients.md` and follow the block for the user's specific path.
+`hive init` auto-configures six clients (Claude Code, Claude Desktop, Cursor,
+VS Code, Windsurf, Gemini CLI); Codex CLI and the OpenAI Responses API are
+manual setups documented in the same reference. If the user has several
+auto-configurable clients, use the one-command fast path above instead.
 
 ## Verifying the install
 
@@ -70,7 +73,7 @@ Run a test query in the connected client. Any of these works:
 > "Show me the top 5 DeFi protocols by TVL."
 
 If the agent calls a Hive tool (you'll see `get_price`,
-`go_plus_token_security`, or `defillama_get_protocols` in the tool
+`get_token_security`, or `defillama_get_protocols` in the tool
 log), the install worked. If the agent answers from training data
 without a tool call, the MCP connection isn't wired correctly — check
 the config file path and the auth header.
