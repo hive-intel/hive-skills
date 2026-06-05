@@ -1,6 +1,6 @@
 ---
 name: hive-defi-research
-description: Use this skill for DeFi protocol and chain research covering TVL, fees, revenue, yields, stablecoins, bridges, protocol slugs, and chain-level DeFi metrics. Use it for current protocol comparisons and freshness-sensitive DeFi analysis.
+description: Use this skill when the user asks about a DeFi protocol's TVL, fees, revenue, or yields, compares protocols, or wants stablecoin, bridge, or chain-level DeFi metrics, especially for current or freshness-sensitive analysis.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
