@@ -30,7 +30,7 @@ clearly named the protocol.
 
 - Summary: protocol or chain DeFi read.
 - Calls made: endpoints, protocol/chain, metric filters.
-- Evidence: TVL, fees/revenue, yield, bridge/stablecoin metrics, freshness.
+- Evidence: TVL, fees/revenue, yield, bridge/stablecoin metrics, provider/source, freshness.
 - Caveats: unavailable metrics, stale snapshots, methodology differences.
 - Next action: compare peers, inspect yield pool, or add token/pool diligence.
 
