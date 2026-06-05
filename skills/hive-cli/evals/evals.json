@@ -19,7 +19,7 @@
       "files": [],
       "assertions": [
         "Includes a cron-compatible command or script.",
-        "Mentions HIVE_API_KEY or hive auth status.",
+        "Mentions HIVE_API_KEY or hive status.",
         "Uses bounded CLI queries."
       ]
     }

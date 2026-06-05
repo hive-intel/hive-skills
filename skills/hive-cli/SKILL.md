@@ -1,6 +1,6 @@
 ---
 name: hive-cli
-description: Use this skill when the user wants to run Hive from a terminal, script, cron job, jq pipeline, shell briefing, or local diagnostic command. Covers CLI auth, status, tool discovery, JSON output, and safe automation.
+description: Use this skill when the user wants to run Hive from a terminal, script, cron job, jq pipeline, shell briefing, or local diagnostic command, or asks for a shell one-liner that calls Hive.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
@@ -36,7 +36,7 @@ npm install -g hive-intelligence
 hive auth login
 ```
 
-`init --browser` runs the PKCE flow described in `hive-build-onboarding`.
+`init --browser` runs the browser sign-in flow described in `hive-build-onboarding`.
 
 ## Common commands
 
@@ -48,27 +48,27 @@ hive tools search <keyword>              # filter the catalog
 hive tools info <tool-name>              # input schema for one tool
 hive market price --ids bitcoin --vs usd # price query (domain subcommand)
 hive defi tvl --protocol aave            # DeFi TVL query
-hive watch '<command>' --interval 30     # tail a query on an interval
+hive watch defi protocols --interval 60  # re-run a domain command on an interval
 hive uninstall --all                     # remove from every client
 ```
 
-Domain subcommands map directly to Hive's category namespace. Common
-ones: `hive market`, `hive defi`, `hive wallet`, `hive security`,
-`hive nft`, `hive prediction`. Run `hive --help` for the full list.
+Domain subcommands map directly to Hive's category namespace:
+`market`, `defi`, `portfolio`, `security`, `social`, `exchange`, `dex`,
+`wallet`, `nft`, `network`, and `search`. Run `hive --help` for the full
+list and `hive <domain> --help` for a domain's subcommands.
 
-## Pipe into jq
+## JSON output and jq
 
-The CLI returns JSON by default — perfect for `jq`:
+Tool output is the envelope `{ ok, data, meta }`. JSON is emitted automatically
+when stdout is not a TTY (when piped) or with `--json`; an interactive terminal
+prints human-readable output. Filter it two ways:
 
 ```bash
-# Price as a single number
-hive market price --ids bitcoin --vs usd | jq '.bitcoin.usd'
+# Built-in --jq runs against the data payload directly (envelope-aware)
+hive market price --ids bitcoin --vs usd --jq '.bitcoin.usd'
 
-# Top DeFi protocol name
-hive defi protocols | jq '.[0].name'
-
-# Count tools matching "wallet"
-hive tools search wallet --format json | jq 'length'
+# Or pipe the --json envelope to external jq and read under .data
+hive defi protocols --json | jq '.data[0].name'
 ```
 
 ## Daily briefing pattern
@@ -80,15 +80,14 @@ set -euo pipefail
 echo "=== Daily Crypto Briefing ==="
 echo
 echo "--- Watchlist ---"
-hive market price --ids bitcoin,ethereum,solana --vs usd \
-  | jq -r 'to_entries[] | "\(.key): $\(.value.usd)"'
+hive market price --ids bitcoin,ethereum,solana --vs usd --json \
+  | jq -r '.data | to_entries[] | "\(.key): $\(.value.usd)"'
 echo
-echo "--- Top Gainers (24h) ---"
-hive market gainers-losers --vs usd --duration 24h | jq '.top_gainers[:5]'
+echo "--- Top Coins ---"
+hive market top --vs usd --limit 5 --json | jq '.data'
 echo
 echo "--- DeFi TVL Leaders ---"
-hive defi protocols \
-  | jq '.[:5] | .[] | "\(.name): $\(.tvl / 1000000 | floor)M"'
+hive defi protocols --json | jq '.data[:5]'
 ```
 
 Schedule with cron:
@@ -99,8 +98,9 @@ Schedule with cron:
 
 ## Authentication options
 
-1. **`hive auth login`** — interactive PKCE browser flow. Stores key
-   in `~/.hive/credentials.json`. Recommended for personal machines.
+1. **`hive auth login`** — interactive browser sign-in. Stores the key
+   in `~/.config/hive/credentials.json` (override with `HIVE_CONFIG_DIR`).
+   Recommended for personal machines.
 2. **`HIVE_API_KEY=hive_live_…`** — env var. Recommended for CI,
    Docker, scripts. The CLI reads the env var per-command.
 3. **`hive --api-key <key> ...`** — one-shot override. Useful for
@@ -110,10 +110,12 @@ Schedule with cron:
 
 ## Output formats
 
-- `--format json` (default) — clean JSON, ready for jq
-- `--format table` — human-friendly columns
-- `--format yaml` — yaml output
-- `--quiet` — suppress headers, useful in shell pipes
+- `--json` — force the JSON envelope (default when stdout is piped)
+- `--pretty` — force human-readable output (default in an interactive terminal)
+- `--jq <expr>` — filter the data payload with a jq expression
+- `--fields <list>` — keep only the named fields
+- `--csv` — CSV for array results
+- `-q, --quiet` — suppress non-data output, useful in pipes
 
 ## When to use the CLI vs the MCP
 
