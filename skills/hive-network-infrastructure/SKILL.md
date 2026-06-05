@@ -1,6 +1,6 @@
 ---
 name: hive-network-infrastructure
-description: Use this skill for chain infrastructure and RPC questions covering gas, blocks, receipts, logs, transaction status, supported networks, fee data, and diagnostics. Use it when the user needs current chain state or transaction evidence.
+description: Use this skill when the user asks about chain state, gas, blocks, transaction receipts, logs, transaction status, supported networks, fee data, or RPC diagnostics, or needs current transaction evidence.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
