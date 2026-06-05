@@ -1,6 +1,6 @@
 ---
 name: hive-solana-analysis
-description: Use this skill for Solana-specific analysis covering wallets, SPL token accounts, DAS assets, parsed transactions, priority fees, launch data, mints, or Solana NFT assets. Prefer Solana-native identifiers and providers over EVM assumptions.
+description: Use this skill when a request involves a Solana wallet, mint, SPL token account, DAS asset, parsed transaction, priority fee, pump.fun launch data, or Solana NFT asset. Prefer Solana-native identifiers and providers over EVM assumptions.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
