@@ -1,6 +1,6 @@
 ---
 name: hive-build
-description: Use this skill when the user is integrating Hive into application code, backend services, agents, cron jobs, source-controlled adapters, or production systems rather than asking a one-off chat query. Covers the TypeScript MCP client adapter `hive-mcp-client`, REST fallback execution, retries, typed responses, schema discovery, and safe secret handling.
+description: Use this skill when the user is integrating Hive into application code, backend services, agents, cron jobs, source-controlled adapters, or production systems — wiring Hive into a Next.js API route, a Python or Go cron job, a Rust or Java service, or a LangChain/CrewAI agent — rather than asking a one-off chat query.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
@@ -258,8 +258,8 @@ Don't hardcode tool schemas. In TypeScript, use the adapter:
 ```ts
 import { searchHiveTools, getHiveEndpointSchema } from "hive-mcp-client";
 
-const matches = await searchHiveTools(hive, { query: "wallet risk", limit: 20 });
-const schema = await getHiveEndpointSchema(hive, "get_address_risk");
+const matches = await searchHiveTools(hive, { query: "token security", limit: 20 });
+const schema = await getHiveEndpointSchema(hive, "get_token_security");
 ```
 
 For REST fallback clients, fetch at runtime:
@@ -268,9 +268,11 @@ For REST fallback clients, fetch at runtime:
 GET /api/v1/tools?search=wallet&limit=200
 ```
 
-Returns a paginated list with `name`, `description`, `inputSchema`,
-`metadata`. Walk pages via `meta.cursor`. New tools ship continuously
-— `/api/v1/tools` is always authoritative.
+Returns `{ ok, data, has_more, next_cursor?, meta }`, where each `data` entry has
+`name`, `title`, `description`, `inputSchema`, and flattened
+`provider`/`category`/`tags`. Walk pages with the top-level `next_cursor` (pass it
+back as the `cursor` query param) while `has_more` is true. New tools ship
+continuously — `/api/v1/tools` is always authoritative.
 
 For a single tool's input schema:
 
@@ -301,16 +303,23 @@ Every successful response shares the same shape:
   "ok": true,
   "data": { /* tool result */ },
   "meta": {
-    "fetched_at": "2026-04-25T07:42:11Z",
-    "latency_ms": 94,
     "tool": "get_price",
-    "cached": false
+    "fetched_at": "2026-04-25T07:42:11Z",
+    "duration_ms": 94,
+    "provider": "coingecko",
+    "runtime_status": "ok",
+    "cache_status": "miss",
+    "source": "live"
   }
 }
 ```
 
-Read `meta.fetched_at` when surfacing freshness to the user. Ignore
-the `cached` field unless the user explicitly asks about caching.
+Read `meta.fetched_at` for freshness and `meta.provider`/`meta.source` for
+provenance. `meta.runtime_status` is the per-call status
+(`ok`/`missing_key`/`plan_required`/`rate_limited`/`degraded`/`failing`) and a
+non-`ok` value still returns a usable envelope. `meta.cache_status` is a string
+(`miss`/`hit`/`bypass`/`unknown`), not a boolean — read it only if the user asks
+about caching.
 
 ## Runtime status handling
 
