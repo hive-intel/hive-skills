@@ -30,7 +30,7 @@ when multiple markets match.
 
 - Summary: market/event read and top outcomes.
 - Calls made: endpoints, market/event/token/trader identifiers.
-- Evidence: price, liquidity, volume, outcomes, holders/traders, freshness.
+- Evidence: price, liquidity, volume, outcomes, holders/traders, provider/source, freshness.
 - Caveats: market probability is not truth, thin liquidity, stale/incomplete
   stats, candidate ambiguity.
 - Next action: inspect selected market, holders, trades, or related events.
