@@ -9,7 +9,7 @@ metadata:
 version: 1.0.0
 ---
 
-# hive-stateful-monitoring - Stateful Monitoring
+# hive-stateful-monitoring — Stateful Monitoring
 
 Use this skill when the user wants Hive to remember a wallet, token, protocol,
 market, prediction market, watchlist digest, token discovery risk workflow, or
