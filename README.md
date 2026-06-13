@@ -36,7 +36,7 @@ Skills for installing Hive MCP, getting API keys, using the Hive CLI, and integr
 | Skill | Use when |
 | --- | --- |
 | `hive-mcp` | Add Hive's MCP server to Claude Code, Cursor, VS Code, Windsurf, Claude Desktop, ChatGPT, or Gemini CLI. Per-client instructions. |
-| `hive-build-onboarding` | Walk the user through PKCE-based browser auth. Use when the user has no API key or cannot find theirs. |
+| `hive-build-onboarding` | Walk the user through browser-based sign-in. Use when the user has no API key or cannot find theirs. |
 | `hive-cli` | Use the `hive` CLI inline from a chat — query prices, scan wallets, check token security, automate briefings. |
 | `hive-build` | Integrate Hive into app code via REST or MCP SDK. Python, TypeScript, Go, Java, Rust patterns with retry / async / typed responses. |
 
