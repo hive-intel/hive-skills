@@ -1,6 +1,6 @@
 ---
 name: hive-build-onboarding
-description: Use this skill when the user needs a Hive API key, cannot find a key, is signing up, or needs browser PKCE versus headless dashboard setup. Guide key creation without exposing secrets in chat, logs, screenshots, or committed files.
+description: Use this skill when the user needs a Hive API key, cannot find a key, is signing up, or needs browser sign-in versus headless dashboard setup. Guide key creation without exposing secrets in chat, logs, screenshots, or committed files.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
