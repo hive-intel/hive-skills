@@ -1,0 +1,50 @@
+[
+  {
+    "query": "which hive tool gets token holders for an ethereum contract",
+    "should_trigger": true
+  },
+  {
+    "query": "what can hive actually do? list its capabilities",
+    "should_trigger": true
+  },
+  {
+    "query": "which provider does hive use for nft floors and is it healthy",
+    "should_trigger": true
+  },
+  {
+    "query": "hive said tool not found for get_wallet_tokens — whats the right name",
+    "should_trigger": true
+  },
+  {
+    "query": "what arguments does the price endpoint schema actually take",
+    "should_trigger": true
+  },
+  {
+    "query": "is hive degraded right now? my calls keep failing",
+    "should_trigger": true
+  },
+  {
+    "query": "whats the price of eth",
+    "should_trigger": false
+  },
+  {
+    "query": "add hive mcp to cursor",
+    "should_trigger": false
+  },
+  {
+    "query": "run diligence on this token contract",
+    "should_trigger": false
+  },
+  {
+    "query": "how do mcp resources work in general, any docs?",
+    "should_trigger": false
+  },
+  {
+    "query": "write code that lists hive tools via REST for my app",
+    "should_trigger": false
+  },
+  {
+    "query": "which openai models support tool calling",
+    "should_trigger": false
+  }
+]

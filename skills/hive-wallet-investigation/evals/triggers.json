@@ -1,0 +1,50 @@
+[
+  {
+    "query": "what does 0x28C6c06298d514Db089934071355E5743bf21d60 hold on ethereum",
+    "should_trigger": true
+  },
+  {
+    "query": "trace where this wallet's funds came from, it just sent me 2 eth",
+    "should_trigger": true
+  },
+  {
+    "query": "did this whale wallet dump any LINK this week? 0x… on mainnet",
+    "should_trigger": true
+  },
+  {
+    "query": "show me this address's defi positions and nft exposure",
+    "should_trigger": true
+  },
+  {
+    "query": "whats the realized pnl of this trader address",
+    "should_trigger": true
+  },
+  {
+    "query": "this EVM address might be active on several chains, can you inspect it",
+    "should_trigger": true
+  },
+  {
+    "query": "is this address that dm'd me flagged as a scammer or phishing",
+    "should_trigger": false
+  },
+  {
+    "query": "analyze this solana wallet 9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+    "should_trigger": false
+  },
+  {
+    "query": "alert me whenever this wallet moves more than $50k",
+    "should_trigger": false
+  },
+  {
+    "query": "how do hd wallets derive addresses from a seed phrase",
+    "should_trigger": false
+  },
+  {
+    "query": "whats gas on mainnet right now",
+    "should_trigger": false
+  },
+  {
+    "query": "what tokens should i buy this week",
+    "should_trigger": false
+  }
+]

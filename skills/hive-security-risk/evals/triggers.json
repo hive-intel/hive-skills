@@ -1,0 +1,50 @@
+[
+  {
+    "query": "a dapp wants unlimited approval of my USDC to spender 0x…, should i sign?",
+    "should_trigger": true
+  },
+  {
+    "query": "is mintify-airdrop dot xyz legit? i was about to connect my wallet",
+    "should_trigger": true
+  },
+  {
+    "query": "i got this transaction payload from a swap site, simulate it before i send it",
+    "should_trigger": true
+  },
+  {
+    "query": "is the token at 0x6982508145454Ce325dDbE47a25d4ec3d2311933 a honeypot?",
+    "should_trigger": true
+  },
+  {
+    "query": "check if this address that messaged me is flagged for scams before i reply",
+    "should_trigger": true
+  },
+  {
+    "query": "which of my open approvals are risky and should be revoked?",
+    "should_trigger": true
+  },
+  {
+    "query": "is PEPE worth buying? run diligence on holders and liquidity",
+    "should_trigger": false
+  },
+  {
+    "query": "what does this wallet hold across defi",
+    "should_trigger": false
+  },
+  {
+    "query": "audit my solidity contract source code for reentrancy bugs",
+    "should_trigger": false
+  },
+  {
+    "query": "explain how approval phishing scams work conceptually",
+    "should_trigger": false
+  },
+  {
+    "query": "whats the floor price of this nft collection",
+    "should_trigger": false
+  },
+  {
+    "query": "compare aave vs compound tvl",
+    "should_trigger": false
+  }
+]

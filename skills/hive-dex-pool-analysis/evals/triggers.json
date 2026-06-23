@@ -1,0 +1,50 @@
+[
+  {
+    "query": "how deep is the main PEPE/WETH pool and which way has flow gone today",
+    "should_trigger": true
+  },
+  {
+    "query": "show me trending pools on base right now",
+    "should_trigger": true
+  },
+  {
+    "query": "get OHLCV for pair 0x… on arbitrum, 1h candles",
+    "should_trigger": true
+  },
+  {
+    "query": "which pool has the most real liquidity for token 0x6982508145454Ce325dDbE47a25d4ec3d2311933",
+    "should_trigger": true
+  },
+  {
+    "query": "recent swaps on this pool — any whale sized trades?",
+    "should_trigger": true
+  },
+  {
+    "query": "compare the 0.05% and 0.3% fee tier pools for this pair",
+    "should_trigger": true
+  },
+  {
+    "query": "whats the price of PEPE right now",
+    "should_trigger": false
+  },
+  {
+    "query": "is this pool's token a honeypot",
+    "should_trigger": false
+  },
+  {
+    "query": "top protocols by TVL on base",
+    "should_trigger": false
+  },
+  {
+    "query": "explain impermanent loss to me",
+    "should_trigger": false
+  },
+  {
+    "query": "check the SOL order book on kraken",
+    "should_trigger": false
+  },
+  {
+    "query": "what LP positions does this wallet hold",
+    "should_trigger": false
+  }
+]

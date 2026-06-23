@@ -1,0 +1,50 @@
+[
+  {
+    "query": "what are the odds on the next fed rate cut on polymarket",
+    "should_trigger": true
+  },
+  {
+    "query": "find prediction markets about the 2026 world cup winner",
+    "should_trigger": true
+  },
+  {
+    "query": "compare polymarket vs kalshi on the CPI print markets",
+    "should_trigger": true
+  },
+  {
+    "query": "who are the biggest holders in this polymarket market",
+    "should_trigger": true
+  },
+  {
+    "query": "that 70% odds number — how much liquidity is actually behind it",
+    "should_trigger": true
+  },
+  {
+    "query": "show recent trades on this market id",
+    "should_trigger": true
+  },
+  {
+    "query": "whats the POL token trading at",
+    "should_trigger": false
+  },
+  {
+    "query": "what does this trader's wallet hold outside polymarket",
+    "should_trigger": false
+  },
+  {
+    "query": "explain how prediction markets resolve disputes",
+    "should_trigger": false
+  },
+  {
+    "query": "alert me when these odds move 10 points",
+    "should_trigger": false
+  },
+  {
+    "query": "is using polymarket legal in my country",
+    "should_trigger": false
+  },
+  {
+    "query": "top defi protocols by tvl",
+    "should_trigger": false
+  }
+]

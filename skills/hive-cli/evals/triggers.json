@@ -1,0 +1,50 @@
+[
+  {
+    "query": "give me a terminal one-liner for btc price with hive, pipe it to jq",
+    "should_trigger": true
+  },
+  {
+    "query": "set up a daily crypto briefing script i can run from cron",
+    "should_trigger": true
+  },
+  {
+    "query": "hive doctor says auth failed — diagnose it from the shell",
+    "should_trigger": true
+  },
+  {
+    "query": "how do i get csv out of hive defi protocols from the terminal",
+    "should_trigger": true
+  },
+  {
+    "query": "re-run hive defi tvl every 60 seconds in my shell",
+    "should_trigger": true
+  },
+  {
+    "query": "bash script that checks token security for a list of contracts",
+    "should_trigger": true
+  },
+  {
+    "query": "call hive from my next.js api route",
+    "should_trigger": false
+  },
+  {
+    "query": "add hive mcp to claude code",
+    "should_trigger": false
+  },
+  {
+    "query": "whats btc at",
+    "should_trigger": false
+  },
+  {
+    "query": "i need a hive api key",
+    "should_trigger": false
+  },
+  {
+    "query": "explain what jq does",
+    "should_trigger": false
+  },
+  {
+    "query": "alert me when eth drops 5%",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "query": "wire hive into my next.js api route, typescript",
+    "should_trigger": true
+  },
+  {
+    "query": "python cron job that pulls hive data daily and writes a json report",
+    "should_trigger": true
+  },
+  {
+    "query": "expose hive tools to my langchain agent",
+    "should_trigger": true
+  },
+  {
+    "query": "my go service needs hive token security checks, show me the client",
+    "should_trigger": true
+  },
+  {
+    "query": "how should i handle hive 429s and retries in production",
+    "should_trigger": true
+  },
+  {
+    "query": "rust client for hive's REST execute endpoint",
+    "should_trigger": true
+  },
+  {
+    "query": "add hive to cursor",
+    "should_trigger": false
+  },
+  {
+    "query": "terminal command for btc price with jq",
+    "should_trigger": false
+  },
+  {
+    "query": "get me a hive api key",
+    "should_trigger": false
+  },
+  {
+    "query": "whats the price of eth",
+    "should_trigger": false
+  },
+  {
+    "query": "build a react dashboard with mock crypto data, no backend",
+    "should_trigger": false
+  },
+  {
+    "query": "how does the mcp protocol handle sessions in general",
+    "should_trigger": false
+  }
+]

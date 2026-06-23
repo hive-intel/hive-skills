@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Use Hive MCP to investigate whether wallet 0x0000000000000000000000000000000000000000 has meaningful Ethereum token activity. Show the tools you would call and the caveats.",
+      "prompt": "Use Hive MCP to investigate whether wallet 0x28C6c06298d514Db089934071355E5743bf21d60 has meaningful Ethereum token activity. Show the tools you would call and the caveats.",
       "expected_output": "Routes through wallet_investigation, requests or infers eth-mainnet, looks up schemas before exact endpoint calls, avoids inventing activity, and reports provider/runtime/freshness caveats.",
       "files": [],
       "assertions": [

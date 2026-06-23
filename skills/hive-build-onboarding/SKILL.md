@@ -1,22 +1,18 @@
 ---
 name: hive-build-onboarding
-description: Use this skill when the user needs a Hive API key, cannot find a key, is signing up, or needs browser sign-in versus headless dashboard setup. Guide key creation without exposing secrets in chat, logs, screenshots, or committed files.
+description: Use this skill when the user needs a Hive API key or account — "I don't have a key", "how do I sign up", "I lost my API key", "set up Hive for me" — or needs browser sign-in versus headless/CI dashboard setup, key prefixes, or plan limits. Guide key creation without exposing secrets in chat, logs, screenshots, or committed files. After the key exists, route to hive-mcp or hive-cli to wire it up.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
   category: "setup"
   requires_network: "true"
-version: 1.0.0
+version: 1.1.0
 ---
 
 # hive-build-onboarding — Get a Hive API Key
 
-Use this skill when the user says any of:
-
-- "I don't have a Hive key"
-- "How do I sign up?"
-- "I lost my API key"
-- "Set up Hive for me"
+Get the user from "no key" to a verified working key without the secret ever
+appearing in chat, logs, screenshots, or committed files.
 
 Hive uses passwordless magic-link auth — no username/password, no
 credit card to start. Free Demo tier: 10,000 credits/month, 30
@@ -69,7 +65,7 @@ For CI, store the key in the secret manager (GitHub Secrets, Vault,
 
 ## Key prefixes
 
-The first three characters of the secret tell you the environment:
+The key's prefix tells you the environment:
 
 - `hive_live_` — production key
 - `hive_test_` — test mode (no rate limiting against the user's quota,
@@ -111,15 +107,13 @@ disabled.
 
 ## Plan upgrade
 
-If the user wants higher limits than the Demo tier:
+If the user wants higher limits than the Demo tier, direct them to
+https://www.hiveintelligence.xyz/dashboard/plans — always quote limits and
+prices from that page, since they change. As of June 2026 the tiers are:
 
 - Analyst — $129/month, 500k credits, 500 req/min, 10 keys
 - Pro — $499/month, 2M credits, 1k req/min, 25 keys
 - Enterprise — custom, unlimited credits, 3k req/min, 100 keys
-
-Direct them to https://www.hiveintelligence.xyz/dashboard/plans.
-Today the upgrade flow is mailto-based; in-app Stripe checkout is on
-the roadmap.
 
 ## Runtime status handling
 

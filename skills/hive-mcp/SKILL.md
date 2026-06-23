@@ -1,12 +1,12 @@
 ---
 name: hive-mcp
-description: Use this skill when installing, configuring, or debugging Hive MCP in an AI client such as Claude Desktop, Claude Code, Cursor, Windsurf, VS Code, Gemini CLI, the OpenAI Responses API, or Codex CLI.
+description: Use this skill when the user wants to install, configure, connect, verify, or debug Hive MCP in an AI client — Claude Desktop, Claude Code, Cursor, Windsurf, VS Code, Gemini CLI, the OpenAI Responses API, or Codex CLI — including "add Hive to X", "Hive tools aren't showing up", 401/auth errors, or hosted-vs-stdio questions. If the user has no API key yet, route to hive-build-onboarding; for calling Hive from app code use hive-build.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
   category: "setup"
   requires_network: "true"
-version: 1.0.0
+version: 1.1.0
 ---
 
 # hive-mcp — Add Hive to an MCP Client
@@ -42,13 +42,11 @@ Claude Code, Claude Desktop, Cursor, VS Code, Windsurf, and Gemini CLI —
 and runs the browser sign-in. Codex CLI and the OpenAI Responses API are
 set up separately (see below); `init --all` does not configure them.
 
-For agents that support standalone skills, install or copy the Hive skills
-after MCP is connected. In this repo, validate the package locally before
-publishing it to npm or a public skills mirror:
+For agents that support standalone skills, install the Hive skills after MCP
+is connected so the agent also knows the workflow layer:
 
 ```bash
-npx skills add ./agent-skills --list
-npm --workspace @hiveintelligence/agent-skills run pack:check
+npx skills add hive-intel/hive-skills
 ```
 
 Read `references/client-install-matrix.md` when the user asks for install
@@ -119,6 +117,12 @@ npx -y -p hive-intelligence@latest hive upgrade
   `"Authorization": "Bearer YOUR_KEY"` with one literal space after
   `Bearer`. Don't wrap the key in quotes inside the JSON value. Verify
   the key at https://www.hiveintelligence.xyz/dashboard/keys.
+- **Connection error / timeout** — corporate proxy may block
+  `mcp.hiveintelligence.xyz`. Test on a non-corporate network. If you
+  must stay behind the firewall, use the stdio fallback documented at
+  https://www.hiveintelligence.xyz/install/claude-desktop.
+- **"createPopperScope is not a function"** — webpack/dev-server
+  cache issue, not a Hive bug. Restart the client.
 
 ## Runtime status handling
 
@@ -126,12 +130,6 @@ Hive reports runtime states as `ok`, `missing_key`, `plan_required`,
 `rate_limited`, `degraded`, and `failing`. Installation succeeds when the MCP
 server is connected; individual provider tools may still report non-`ok`
 runtime states until credentials, plan access, or rate limits are resolved.
-- **Connection error / timeout** — corporate proxy may block
-  `mcp.hiveintelligence.xyz`. Test on a non-corporate network. If you
-  must stay behind the firewall, use the stdio fallback documented at
-  https://www.hiveintelligence.xyz/install/claude-desktop.
-- **"createPopperScope is not a function"** — webpack/dev-server
-  cache issue, not a Hive bug. Restart the client.
 
 ## Source of truth
 

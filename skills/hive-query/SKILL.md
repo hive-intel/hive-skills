@@ -1,24 +1,22 @@
 ---
 name: hive-query
-description: Use this skill as the default entry point for any live crypto intelligence question before answering from memory. Route wallet, token, DeFi, NFT, Solana, security, market, DEX, network, or prediction-market requests through Hive task toolsets and bounded endpoint invocation. If routing does not surface the exact tool or schema, hand off to hive-tool-discovery.
+description: Default entry point for any live crypto question when Hive MCP is connected — prices, wallets, tokens, DeFi, NFTs, Solana, security, markets, DEX, networks, prediction markets. Use it whenever the answer depends on live or on-chain data instead of answering from memory, even if the user never mentions Hive. Routes intent to a canonical Hive task toolset, then schema lookup and bounded endpoint invocation. If a domain-specific hive-* skill clearly matches, prefer it; if routing cannot surface the exact tool or schema, hand off to hive-tool-discovery.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
   category: "discovery"
   requires_network: "true"
-version: 1.0.0
+version: 1.1.0
 ---
 
 # hive-query — Route Crypto Questions Through Hive
 
-Use this skill when Hive MCP is connected and the user asks a crypto question.
-Do not answer from model memory when the answer depends on live data.
+Route the user's crypto question to one canonical Hive task toolset, inspect
+the exact schema, invoke the endpoint with bounded arguments, and answer with
+provenance. Do not answer from model memory when the answer depends on live
+data.
 
-## Routing rule
-
-Read `references/root-mcp-workflow.md` when the user asks how Hive MCP is
-organized, what tools are available, or how an agent should navigate the root
-endpoint without loading the full provider catalog into context.
+## Routing procedure
 
 1. Read `hive://toolsets` or call `search_tools` with the user's intent.
 2. Select one canonical task toolset.
@@ -27,7 +25,13 @@ endpoint without loading the full provider catalog into context.
 5. Call the exact endpoint through `invoke_api_endpoint`.
 6. Report freshness, provider/runtime status, and any missing-data caveats.
 
+Read `references/root-mcp-workflow.md` when you need the bigger picture: how
+the root MCP endpoint is organized, what resources exist, or how to navigate
+without loading the full provider catalog into context.
+
 ## Canonical task toolsets
+
+`hive://toolsets` is authoritative; this table is the routing shortcut.
 
 | Intent | Toolset id |
 | --- | --- |
@@ -44,19 +48,19 @@ endpoint without loading the full provider catalog into context.
 | Durable monitors, alerts, scheduled reports, agent memory | `stateful_monitoring` |
 | Ambiguous request or schema lookup | `search_discovery` |
 
-## Example
+## Worked example
 
 User: "Investigate this wallet on Ethereum."
 
 Use `wallet_investigation`. Required identifiers are wallet address and chain.
-Then search for the current wallet-balance endpoint, inspect its schema, and
-only then invoke it. Do not hardcode stale endpoint names in the skill. Use this
-sequence: `search_tools` for `wallet investigation ethereum balances`,
-`get_api_endpoint_schema` for the selected endpoint, then `invoke_api_endpoint`
-with schema-valid `address` and `network` or chain arguments.
+Then: `search_tools` for `wallet investigation ethereum balances`,
+`get_api_endpoint_schema` for the selected endpoint, then
+`invoke_api_endpoint` with schema-valid address and chain arguments. Do not
+hardcode endpoint names from memory — the catalog changes and search is
+authoritative.
 
-Then use schema lookup and add transfer, NFT, or DeFi-position tools only when
-the user's question needs that detail.
+Add transfer, NFT, or DeFi-position tools only when the user's question needs
+that detail.
 
 ## Report template
 
@@ -85,15 +89,22 @@ Use this structure for Hive-backed answers:
 
 ## Runtime status handling
 
-Hive uses `ok`, `missing_key`, `plan_required`, `rate_limited`, `degraded`, and
-`failing`. Do not treat a non-`ok` provider state as a missing tool. Tell the
-user which task/tool failed, why, and what can be retried or upgraded.
+Hive uses `ok`, `missing_key`, `plan_required`, `rate_limited`, `degraded`,
+and `failing`. Do not treat a non-`ok` provider state as a missing tool. Tell
+the user which task/tool failed, why, and what can be retried or upgraded.
 
 ## Guardrails
 
 - Never invent token, wallet, market, or event identifiers.
-- Prefer exact contract addresses, wallet addresses, pair addresses, market ids,
-  or exchange ids over fuzzy names.
+- Prefer exact contract addresses, wallet addresses, pair addresses, market
+  ids, or exchange ids over fuzzy names.
 - Keep raw provider endpoints callable; task toolsets are only the selection
   layer.
-- If a tool is absent from the skill, use `search_tools` instead of guessing.
+- If a tool is absent from this skill, use `search_tools` instead of guessing.
+
+## Hand-offs
+
+- A domain-specific hive-* skill matches the question → prefer it; this skill
+  is the generalist entry point.
+- Routing cannot surface the exact tool or schema → `hive-tool-discovery`.
+- The user wants Hive to keep watching something → `hive-stateful-monitoring`.

@@ -1,0 +1,50 @@
+[
+  {
+    "query": "whats the floor on collection 0x… on ethereum and recent sales",
+    "should_trigger": true
+  },
+  {
+    "query": "who owns the most of this collection? any whale concentration?",
+    "should_trigger": true
+  },
+  {
+    "query": "is this nft that showed up in my wallet spam",
+    "should_trigger": true
+  },
+  {
+    "query": "how rare is token id 4242 in this collection",
+    "should_trigger": true
+  },
+  {
+    "query": "the metadata on this nft looks wrong, pull the raw traits",
+    "should_trigger": true
+  },
+  {
+    "query": "sales volume for this collection across marketplaces this month",
+    "should_trigger": true
+  },
+  {
+    "query": "check this compressed nft on solana",
+    "should_trigger": false
+  },
+  {
+    "query": "what nfts does wallet 0x28C6… hold",
+    "should_trigger": false
+  },
+  {
+    "query": "is minting from this drop site safe? it wants wallet connect",
+    "should_trigger": false
+  },
+  {
+    "query": "explain how erc-721 royalties work",
+    "should_trigger": false
+  },
+  {
+    "query": "alert me when the floor drops below 1 eth",
+    "should_trigger": false
+  },
+  {
+    "query": "whats the APE token trading at",
+    "should_trigger": false
+  }
+]

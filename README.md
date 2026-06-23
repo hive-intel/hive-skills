@@ -84,7 +84,7 @@ Answers should report provider provenance, data freshness, and runtime status.
 
 ## How it works
 
-Each skill follows the [Agent Skills spec](https://agentskills.io): a `SKILL.md` with YAML `name` + `description` and progressive disclosure — metadata loads at startup, full instructions load on activation, deeper detail lives in `references/`. Every Hive skill preserves the same loop: **discovery → schema lookup → bounded execution → diagnostics → provenance-aware answer.**
+Each skill follows the [Agent Skills spec](https://agentskills.io): a `SKILL.md` with YAML `name` + `description` and progressive disclosure — metadata loads at startup, full instructions load on activation, and where a skill carries genuinely deep material (per-client install matrices, root-MCP architecture, B2B subject signing) it lives in `references/` and loads only when needed. Every skill also ships `evals/` with execution test cases and trigger evals. Every Hive skill preserves the same loop: **discovery → schema lookup → bounded execution → diagnostics → provenance-aware answer.**
 
 ## Trust & provenance
 

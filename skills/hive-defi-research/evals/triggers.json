@@ -1,0 +1,50 @@
+[
+  {
+    "query": "compare aave and compound tvl and fees — which one actually earns more",
+    "should_trigger": true
+  },
+  {
+    "query": "top defi protocols on arbitrum by tvl right now",
+    "should_trigger": true
+  },
+  {
+    "query": "best stablecoin yields at the moment and how sketchy are they",
+    "should_trigger": true
+  },
+  {
+    "query": "is curve's revenue growing or shrinking this quarter",
+    "should_trigger": true
+  },
+  {
+    "query": "how much bridge volume went between ethereum and base this month",
+    "should_trigger": true
+  },
+  {
+    "query": "which chains are gaining defi tvl the fastest",
+    "should_trigger": true
+  },
+  {
+    "query": "whats the price of CRV",
+    "should_trigger": false
+  },
+  {
+    "query": "how deep is the curve 3pool, recent swaps?",
+    "should_trigger": false
+  },
+  {
+    "query": "is the AAVE token itself safe? holders, liquidity?",
+    "should_trigger": false
+  },
+  {
+    "query": "explain how lending protocols work",
+    "should_trigger": false
+  },
+  {
+    "query": "watch aave tvl and alert me on a 10% drop",
+    "should_trigger": false
+  },
+  {
+    "query": "what does the aave treasury wallet hold",
+    "should_trigger": false
+  }
+]

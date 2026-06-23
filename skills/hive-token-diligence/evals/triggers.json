@@ -1,0 +1,50 @@
+[
+  {
+    "query": "thinking of aping into PEPE 0x6982508145454Ce325dDbE47a25d4ec3d2311933 on eth — is it legit? liquidity? holders?",
+    "should_trigger": true
+  },
+  {
+    "query": "someone in my tg group keeps shilling a token called $MOON, is it real? i only have the ticker",
+    "should_trigger": true
+  },
+  {
+    "query": "run full diligence on this base token before i buy, contract 0x4200000000000000000000000000000000000042",
+    "should_trigger": true
+  },
+  {
+    "query": "who are the top holders of this erc20 and is the supply super concentrated?",
+    "should_trigger": true
+  },
+  {
+    "query": "does this token look like a real project? socials, website, enrichment, anything",
+    "should_trigger": true
+  },
+  {
+    "query": "we want to list a token on our launchpad, vet it first pls",
+    "should_trigger": true
+  },
+  {
+    "query": "is it safe to approve this spender contract for my USDC",
+    "should_trigger": false
+  },
+  {
+    "query": "how deep is the PEPE/WETH pool on uniswap v3",
+    "should_trigger": false
+  },
+  {
+    "query": "is this pump.fun solana mint safe to buy",
+    "should_trigger": false
+  },
+  {
+    "query": "whats the price of PEPE right now",
+    "should_trigger": false
+  },
+  {
+    "query": "explain what token vesting cliffs mean",
+    "should_trigger": false
+  },
+  {
+    "query": "watch this token and alert me if liquidity drops 20%",
+    "should_trigger": false
+  }
+]

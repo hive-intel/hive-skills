@@ -1,0 +1,50 @@
+[
+  {
+    "query": "whats the price of eth right now and the 24h change",
+    "should_trigger": true
+  },
+  {
+    "query": "can you check what the top crypto gainers are today? i think hive is connected",
+    "should_trigger": true
+  },
+  {
+    "query": "my friend says AVAX activity is exploding, can you check the actual live numbers",
+    "should_trigger": true
+  },
+  {
+    "query": "what can you tell me about the token at 0x6982508145454Ce325dDbE47a25d4ec3d2311933",
+    "should_trigger": true
+  },
+  {
+    "query": "pull live funding rates for btc perps and tell me whats crowded",
+    "should_trigger": true
+  },
+  {
+    "query": "how many active polymarket markets are about AI right now",
+    "should_trigger": true
+  },
+  {
+    "query": "explain how AMMs work, no need to look anything up",
+    "should_trigger": false
+  },
+  {
+    "query": "write a python script that calls the hive REST api every morning",
+    "should_trigger": false
+  },
+  {
+    "query": "add hive mcp to cursor for me",
+    "should_trigger": false
+  },
+  {
+    "query": "I lost my hive api key, help me get a new one",
+    "should_trigger": false
+  },
+  {
+    "query": "watch this wallet and alert me on big moves going forward",
+    "should_trigger": false
+  },
+  {
+    "query": "summarize this whitepaper pdf i downloaded",
+    "should_trigger": false
+  }
+]
