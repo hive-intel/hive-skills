@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Investigate this Ethereum wallet's balances and recent transfers: 0x0000000000000000000000000000000000000000",
+      "prompt": "What does 0x28C6c06298d514Db089934071355E5743bf21d60 hold on Ethereum, and did anything big move in the last week?",
       "expected_output": "Uses wallet_investigation, validates chain/address, starts with balances, adds bounded recent transfers, and reports source/freshness/runtime status.",
       "files": [],
       "assertions": [

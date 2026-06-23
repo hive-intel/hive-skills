@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Run diligence on this Ethereum token contract before I trade it: 0x0000000000000000000000000000000000000000",
+      "prompt": "I'm about to ape into PEPE on Ethereum, contract 0x6982508145454Ce325dDbE47a25d4ec3d2311933. Run real diligence first — liquidity, holders, anything sketchy.",
       "expected_output": "Uses token_diligence, preserves exact chain/contract, plans metadata/liquidity/holder/risk checks, and reports caveats without trading advice.",
       "files": [],
       "assertions": [
@@ -14,7 +14,7 @@
     },
     {
       "id": 2,
-      "prompt": "Is this token real or a scam? I only have the ticker.",
+      "prompt": "someone in my telegram group keeps shilling a token called $MOON. is it legit? i don't have the contract, just the ticker",
       "expected_output": "Does not assume a contract from ticker alone, asks for chain/contract or performs discovery, and explains ambiguity.",
       "files": [],
       "assertions": [

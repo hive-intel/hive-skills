@@ -1,0 +1,50 @@
+[
+  {
+    "query": "did my tx go through? 0x… i think it was on base",
+    "should_trigger": true
+  },
+  {
+    "query": "whats gas on mainnet right now",
+    "should_trigger": true
+  },
+  {
+    "query": "pull logs for this contract between blocks 19m and 19.1m",
+    "should_trigger": true
+  },
+  {
+    "query": "is the arbitrum rpc lagging? my reads look stale",
+    "should_trigger": true
+  },
+  {
+    "query": "which networks does hive support for receipts and logs",
+    "should_trigger": true
+  },
+  {
+    "query": "latest block on polygon and the current base fee pls",
+    "should_trigger": true
+  },
+  {
+    "query": "what does this wallet hold",
+    "should_trigger": false
+  },
+  {
+    "query": "solana priority fees right now",
+    "should_trigger": false
+  },
+  {
+    "query": "is this contract a honeypot",
+    "should_trigger": false
+  },
+  {
+    "query": "explain how eip-1559 burns fees",
+    "should_trigger": false
+  },
+  {
+    "query": "alert me when gas drops below 10 gwei",
+    "should_trigger": false
+  },
+  {
+    "query": "whats eth trading at",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "query": "analyze this solana wallet's SPL token accounts and recent activity: 9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+    "should_trigger": true
+  },
+  {
+    "query": "is this pump.fun mint safe? looks like its mooning",
+    "should_trigger": true
+  },
+  {
+    "query": "what are solana priority fees right now",
+    "should_trigger": true
+  },
+  {
+    "query": "parse this solana tx signature and tell me what actually happened",
+    "should_trigger": true
+  },
+  {
+    "query": "who are the top holders of this mint",
+    "should_trigger": true
+  },
+  {
+    "query": "check this DAS asset / compressed nft on solana",
+    "should_trigger": true
+  },
+  {
+    "query": "investigate this ethereum wallet 0x28C6c06298d514Db089934071355E5743bf21d60",
+    "should_trigger": false
+  },
+  {
+    "query": "floor price of this eth nft collection",
+    "should_trigger": false
+  },
+  {
+    "query": "whats SOL trading at",
+    "should_trigger": false
+  },
+  {
+    "query": "explain how solana proof of history works",
+    "should_trigger": false
+  },
+  {
+    "query": "watch this mint and alert me if liquidity drops",
+    "should_trigger": false
+  },
+  {
+    "query": "add hive to cursor",
+    "should_trigger": false
+  }
+]

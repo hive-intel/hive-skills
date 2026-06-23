@@ -1,0 +1,50 @@
+[
+  {
+    "query": "add hive to cursor and verify it works",
+    "should_trigger": true
+  },
+  {
+    "query": "hive tools arent showing up in claude desktop, debug it",
+    "should_trigger": true
+  },
+  {
+    "query": "getting 401 authentication failed from hive mcp",
+    "should_trigger": true
+  },
+  {
+    "query": "should i use hosted hive mcp or local stdio for development",
+    "should_trigger": true
+  },
+  {
+    "query": "set up hive in vs code copilot chat",
+    "should_trigger": true
+  },
+  {
+    "query": "wire hive into the openai responses api",
+    "should_trigger": true
+  },
+  {
+    "query": "i dont have a hive api key yet, get me one",
+    "should_trigger": false
+  },
+  {
+    "query": "write a python client for hive REST",
+    "should_trigger": false
+  },
+  {
+    "query": "whats btc at",
+    "should_trigger": false
+  },
+  {
+    "query": "give me a terminal one-liner for prices with jq",
+    "should_trigger": false
+  },
+  {
+    "query": "set up the github mcp server in cursor",
+    "should_trigger": false
+  },
+  {
+    "query": "explain what the model context protocol is",
+    "should_trigger": false
+  }
+]

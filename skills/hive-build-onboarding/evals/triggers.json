@@ -1,0 +1,50 @@
+[
+  {
+    "query": "i dont have a hive api key, get me set up",
+    "should_trigger": true
+  },
+  {
+    "query": "lost my hive key — can you recover it?",
+    "should_trigger": true
+  },
+  {
+    "query": "sign me up for hive on this laptop without pasting secrets into chat",
+    "should_trigger": true
+  },
+  {
+    "query": "need a hive key for CI over ssh, browser auth wont work",
+    "should_trigger": true
+  },
+  {
+    "query": "what do the hive_test_ and hive_live_ key prefixes mean",
+    "should_trigger": true
+  },
+  {
+    "query": "how many api keys can i create on the analyst plan",
+    "should_trigger": true
+  },
+  {
+    "query": "add hive mcp to cursor, i already have a key",
+    "should_trigger": false
+  },
+  {
+    "query": "rotate my AWS access keys",
+    "should_trigger": false
+  },
+  {
+    "query": "getting 401 from hive mcp in claude desktop after setup",
+    "should_trigger": false
+  },
+  {
+    "query": "whats btc at",
+    "should_trigger": false
+  },
+  {
+    "query": "upgrade my openai api plan",
+    "should_trigger": false
+  },
+  {
+    "query": "write a python hive client for my backend",
+    "should_trigger": false
+  }
+]

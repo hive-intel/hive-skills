@@ -1,0 +1,50 @@
+[
+  {
+    "query": "watch this wallet and alert me on transfers over $100k",
+    "should_trigger": true
+  },
+  {
+    "query": "send me a daily watchlist digest for btc, eth and sol",
+    "should_trigger": true
+  },
+  {
+    "query": "remember that i care about protocol revenue when you report on aave",
+    "should_trigger": true
+  },
+  {
+    "query": "what changed on my monitors since last week? any open alerts?",
+    "should_trigger": true
+  },
+  {
+    "query": "stop watching that PEPE token please",
+    "should_trigger": true
+  },
+  {
+    "query": "set up a risk watch on this token and tell me if the flags change",
+    "should_trigger": true
+  },
+  {
+    "query": "whats this wallet's balance right now",
+    "should_trigger": false
+  },
+  {
+    "query": "whats btc at",
+    "should_trigger": false
+  },
+  {
+    "query": "give me a cron shell script that fetches prices daily",
+    "should_trigger": false
+  },
+  {
+    "query": "build a monitoring dashboard in react for my app",
+    "should_trigger": false
+  },
+  {
+    "query": "add hive to claude desktop",
+    "should_trigger": false
+  },
+  {
+    "query": "did my tx confirm on base",
+    "should_trigger": false
+  }
+]

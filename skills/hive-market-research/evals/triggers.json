@@ -1,0 +1,50 @@
+[
+  {
+    "query": "whats btc at",
+    "should_trigger": true
+  },
+  {
+    "query": "is eth pumping rn? give me 24h and 7d moves",
+    "should_trigger": true
+  },
+  {
+    "query": "check the SOL order book on kraken — is liquidity thin?",
+    "should_trigger": true
+  },
+  {
+    "query": "btc perp funding rates across exchanges, anything crowded?",
+    "should_trigger": true
+  },
+  {
+    "query": "pull 4h candles for ETH over the last week",
+    "should_trigger": true
+  },
+  {
+    "query": "which exchanges did the most BTC volume today",
+    "should_trigger": true
+  },
+  {
+    "query": "how deep is the PEPE/WETH pool on uniswap",
+    "should_trigger": false
+  },
+  {
+    "query": "top defi protocols by tvl right now",
+    "should_trigger": false
+  },
+  {
+    "query": "is this token contract safe to trade",
+    "should_trigger": false
+  },
+  {
+    "query": "explain what funding rates are",
+    "should_trigger": false
+  },
+  {
+    "query": "alert me when btc crosses 100k",
+    "should_trigger": false
+  },
+  {
+    "query": "what does wallet 0x28C6… hold",
+    "should_trigger": false
+  }
+]
