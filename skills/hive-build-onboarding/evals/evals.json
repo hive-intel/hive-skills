@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "I do not have a Hive API key. Walk me through getting one on my laptop without pasting secrets into chat.",
-      "expected_output": "Uses PKCE browser flow first, avoids exposing secrets, and explains fallback dashboard setup for headless environments.",
+      "expected_output": "Uses browser sign-in first, avoids exposing secrets, and explains fallback dashboard setup for headless environments.",
       "files": [],
       "assertions": [
         "Recommends npx -y -p hive-intelligence@latest hive init --browser.",
