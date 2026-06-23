@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "build"
   requires_network: "true"
-version: 1.0.0
+version: 1.1.0
 ---
 
 # hive-build — Integrate Hive Into App Code
@@ -330,7 +330,7 @@ temporarily gated; surface the state and retry or fall back based on the class.
 
 ## Reference
 
-- TypeScript MCP client: `packages/mcp-client/README.md`
+- TypeScript MCP client: https://www.npmjs.com/package/hive-mcp-client
 - Full API integration guide: https://www.hiveintelligence.xyz/api-integration
 - SDK pages: https://www.hiveintelligence.xyz/sdk
 - Errors: https://www.hiveintelligence.xyz/errors

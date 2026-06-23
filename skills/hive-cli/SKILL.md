@@ -1,22 +1,18 @@
 ---
 name: hive-cli
-description: Use this skill when the user wants to run Hive from a terminal, script, cron job, jq pipeline, shell briefing, or local diagnostic command, or asks for a shell one-liner that calls Hive.
+description: Use this skill when the user wants Hive from a terminal — "run a CLI command for…", "show me from the terminal", "pipe this into jq", "give me a shell script", "set up a daily briefing", cron jobs, or local diagnostics like hive doctor. Covers install, auth, domain subcommands, JSON/jq output, and scripting patterns. For agent-side tool calls use the MCP path instead; for app code use hive-build.
 license: MIT
 metadata:
   package: "@hiveintelligence/agent-skills"
   category: "setup"
   requires_network: "true"
-version: 1.0.0
+version: 1.1.0
 ---
 
 # hive-cli — Hive From the Terminal
 
-Use this skill when the user says any of:
-
-- "Run a CLI command for…"
-- "Show me from the terminal…"
-- "Pipe this into jq" / "give me a shell script"
-- "Set up a daily briefing"
+Run Hive from a shell: one-off queries, jq pipelines, cron briefings, and
+diagnostics.
 
 The Hive CLI lives in the `hive-intelligence` npm package; the
 executable name is `hive`. Package and binary names differ on purpose

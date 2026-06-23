@@ -63,21 +63,16 @@ Use when a client requires a command-based server:
 
 ## Skills install
 
-Use the Hive CLI for detected local clients:
+Use the Hive CLI for detected local clients — it configures MCP and copies the
+bundled skills in one step:
 
 ```bash
 npx -y -p hive-intelligence@latest hive init --all --browser
 ```
 
-Use the public skills CLI only after the dedicated GitHub skills mirror is
-published and verified in CI. Before that, validate the local repo package:
+Or install the skills alone from the public registry:
 
 ```bash
-npx skills add ./agent-skills --list
-```
-
-Check the npm package contents before publishing:
-
-```bash
-npm --workspace @hiveintelligence/agent-skills run pack:check
+npx skills add hive-intel/hive-skills            # all skills
+npx skills add hive-intel/hive-skills --list     # browse without installing
 ```
