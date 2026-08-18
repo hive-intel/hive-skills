@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "prediction-markets"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-prediction-markets — Prediction Markets
@@ -17,8 +17,9 @@ odds rather than truth.
 
 ## Task toolset and identifiers
 
-Toolset: `prediction_markets` (confirm against `hive://toolsets` if routing
-fails).
+Toolset: `prediction_markets`. Read `hive://toolsets/prediction_markets` before
+execution; it is authoritative for the current output schema, material-call
+budget, phases, fallback condition, and stop conditions.
 
 - Required: market id, event id, token id, trader address, or a search query —
   depending on the request.
@@ -27,6 +28,12 @@ fails).
 If the user starts with a topic, search candidates first and ask for selection
 when multiple markets match — similar markets can have different resolution
 criteria.
+
+Before choosing endpoints, select exactly one matching entry from the exact
+workflow's routes[]. Follow its ordered steps, use a fallback only under that
+step's published condition, stop at four material calls, and preserve the
+selected route_id in the typed result. The broad coverageCatalog is discovery
+coverage, not an execution plan.
 
 ## Procedure
 
@@ -72,7 +79,7 @@ and Kalshi if both have markets."
 ## Evidence
 - Outcomes and prices: [per outcome, per venue]
 - Liquidity/volume: [values + as-of]
-- Provenance: [provider, fetched_at, runtime status per call]
+- Provenance: [provider, fetched_at, observed_at/cache_age_ms, runtime status per call]
 
 ## Caveats
 [Market probability is not truth, thin liquidity, stale stats, candidate ambiguity.]
@@ -87,6 +94,30 @@ and Kalshi if both have markets."
 - Similar markets can have different resolution criteria — quote them when
   comparing venues.
 - Event-level and outcome-token-level data are not interchangeable.
+
+## Evidence receipt (required)
+
+End every Hive-backed answer with a compact receipt built from the `_hive`
+object on each material tool response:
+
+- `provider`, `tool`, `fetched_at`, `observed_at`, `cache_age_ms`, and `runtime_status`
+- `receipt_id`, `receipt_version`, server/build version, and SHA-256 input/result
+  digests when present (self-checks, not signatures)
+- `source`, `cache_status`, `truncated`, and any warnings
+- canonical chain/entity identifiers plus block, slot, transaction, or query ids
+  present in provider data
+- material provider disagreements and how they were handled
+- checks that were unavailable, gated, stale, truncated, or intentionally not run
+- a `claims[]` citation from each material statement to exact receipt IDs
+- one `coverage[]` entry for every canonical evidence phase, with each gap explained
+
+Never turn missing evidence into a clean result, silently merge conflicting
+provider values, or omit a degraded/fallback call from the receipt.
+`observed_at` is Hive's first-observation/original cache-population time, and
+`cache_age_ms: 0` only means newly retrieved by Hive. Use provider time, block,
+slot, transaction, or candle close for source recency; if absent, mark it
+unknown. Run `validate_task_result` before presenting the typed workflow result;
+it checks structure but cannot authenticate an invented receipt.
 
 ## Runtime status handling
 

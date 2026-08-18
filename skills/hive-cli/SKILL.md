@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "setup"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-cli — Hive From the Terminal
@@ -128,7 +128,7 @@ write a `hive market price …` invocation in the script.
 ## Runtime status handling
 
 CLI and MCP responses should be interpreted with Hive's runtime states:
-`ok`, `missing_key`, `plan_required`, `rate_limited`, `degraded`, and
+`ok`, `invalid_input`, `missing_key`, `plan_required`, `rate_limited`, `degraded`, and
 `failing`. In scripts, retry `rate_limited` and `degraded` with backoff, but
 surface `missing_key` or `plan_required` to the operator.
 

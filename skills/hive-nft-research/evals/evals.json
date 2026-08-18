@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "Research this NFT collection's floor, recent sales, owners, and metadata freshness.",
-      "expected_output": "Uses nft_research, asks for or resolves chain/collection contract, fetches bounded floor/sales/owner/metadata data, and reports marketplace/provider caveats.",
+      "expected_output": "Uses nft_research, asks for or resolves chain/collection contract, fetches bounded floor/sales/owner/metadata data, reports marketplace/provider caveats, and ends with a runtime evidence receipt.",
       "files": [],
       "assertions": [
         "Chooses nft_research.",
+        "Selects collection_market or authenticity_check from routes[] and follows its stop condition.",
         "Requires chain and collection/asset identifier.",
-        "Reports floor/sales metadata caveats."
+        "Reports floor/sales metadata caveats.",
+        "Includes receipt ids and source freshness."
       ]
     },
     {

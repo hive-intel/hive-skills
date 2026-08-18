@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "Analyze this Solana wallet's SPL token accounts and recent parsed activity.",
-      "expected_output": "Uses solana_analysis, treats the identifier as Solana-native, inspects schemas, bounds token/history calls, and reports slot/freshness/runtime status.",
+      "expected_output": "Uses solana_analysis, treats the identifier as Solana-native, inspects schemas, bounds token/history calls, and ends with a slot/freshness/runtime receipt.",
       "files": [],
       "assertions": [
         "Chooses solana_analysis.",
+        "Selects wallet_snapshot, token_risk, or transaction_readiness from routes[] before endpoint selection.",
         "Avoids EVM assumptions.",
-        "Reports Solana-specific freshness such as slot or fetched time."
+        "Reports Solana-specific freshness such as slot or fetched time.",
+        "Includes receipt ids and unavailable checks."
       ]
     },
     {

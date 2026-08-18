@@ -1,7 +1,7 @@
 {
   "name": "hive-agent-skills",
-  "version": "1.0.0",
-  "description": "Hive Intelligence skills for Claude Code, Cursor, Codex, and other agents. Covers Hive MCP setup, tool discovery, crypto workflows, CLI flows, and browser-based sign-in. Install via `npx -y -p hive-intelligence@latest hive init --all --browser` or copy the packs into the target agent skills directory.",
+  "version": "0.2.0",
+  "description": "Hive Intelligence skills for Claude Code, Cursor, Codex, and other agents. Covers OAuth-first Hive MCP setup, tool discovery, evidence-backed crypto workflows, CLI flows, and runtime receipts. Install via `npx -y -p hive-intelligence@latest hive init --all` or copy the packs into the target agent skills directory.",
   "author": {
     "name": "Hive Intelligence",
     "url": "https://www.hiveintelligence.xyz",

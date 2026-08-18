@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "stateful-monitoring"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-stateful-monitoring — Stateful Monitoring
@@ -19,29 +19,43 @@ the call failed.
 
 ## Task toolset and identifiers
 
-Toolset: `stateful_monitoring`.
+Toolset: `stateful_monitoring`. Read `hive://toolsets/stateful_monitoring`
+before execution; it is authoritative for the current output schema,
+material-call budget, phases, fallback condition, stop conditions, and the
+read/write routing policy.
 
 Required identifiers: monitor kind and target object. Worker-supported monitor
 kinds are `wallet`, `token`, `protocol`, `market`, `prediction_market`,
 `watchlist_digest`, `token_discovery_risk`, and `risk_watch`.
 
+Before choosing endpoints, select exactly one matching entry from the exact
+workflow's routes[]. Follow its ordered steps, use a fallback only under that
+step's published condition, stop at four material calls, and preserve the
+selected route_id in the typed result. The broad coverageCatalog is discovery
+coverage, not an execution plan.
+
 ## Procedure
 
 1. Convert the user's durable intent into a monitor `kind`, `target`,
    `rules`, and `cadence`.
-2. Call `hive_list_monitors` before creating — update instead of duplicating.
-3. Call `hive_create_monitor` for new watch requests, `hive_update_monitor`
+2. Inspect each exact endpoint schema. On the compact root, state reads route
+   through `invoke_api_endpoint`. Every create, update, archive, remember,
+   forget, acknowledge, or resolve action routes through
+   `invoke_stateful_endpoint`, which must never be auto-approved.
+3. Call `hive_list_monitors` before creating — update instead of duplicating.
+4. Describe the proposed state change to the user and obtain explicit approval.
+5. Call `hive_create_monitor` for new watch requests, `hive_update_monitor`
    to change cadence, rules, target, metadata, or status, and
    `hive_archive_monitor` when the user asks Hive to stop watching.
-4. For "what changed / what is alerting / what does Hive remember": use
+6. For "what changed / what is alerting / what does Hive remember": use
    `hive_get_monitor_runs`, `hive_list_observations`, `hive_list_alerts`,
    `hive_get_latest_snapshot`, or `hive_generate_monitor_report`.
-5. Use `hive_update_alert_status` when the user acknowledges, reopens, or
+7. Use `hive_update_alert_status` when the user acknowledges, reopens, or
    resolves an alert.
-6. Use `hive_remember_fact`, `hive_list_memory_facts`, and
+8. Use `hive_remember_fact`, `hive_list_memory_facts`, and
    `hive_forget_memory_fact` for durable user-scoped facts that should appear
    in future monitor reports.
-7. After any write, confirm back to the user exactly what is being watched,
+9. After any write, verify the persisted result, then confirm back to the user exactly what is being watched,
    the rules, and the cadence — that confirmation is their only window to
    catch a mis-captured intent before workers start running it.
 
@@ -66,6 +80,30 @@ User: "Send every customer a daily crypto watchlist brief."
 Create a `watchlist_digest` monitor per B2B subject with saved wallets,
 tokens, protocols, markets, and optional prediction markets in the target —
 after reading the B2B reference above.
+
+## Evidence receipt (required)
+
+End every Hive-backed answer with a compact receipt built from the `_hive`
+object on each material tool response:
+
+- `provider`, `tool`, `fetched_at`, `observed_at`, `cache_age_ms`, and `runtime_status`
+- `receipt_id`, `receipt_version`, server/build version, and SHA-256 input/result
+  digests when present (self-checks, not signatures)
+- `source`, `cache_status`, `truncated`, and any warnings
+- canonical chain/entity identifiers plus block, slot, transaction, or query ids
+  present in provider data
+- material provider disagreements and how they were handled
+- checks that were unavailable, gated, stale, truncated, or intentionally not run
+- a `claims[]` citation from each material statement to exact receipt IDs
+- one `coverage[]` entry for every canonical evidence phase, with each gap explained
+
+Never turn missing evidence into a clean result, silently merge conflicting
+provider values, or omit a degraded/fallback call from the receipt.
+`observed_at` is Hive's first-observation/original cache-population time, not
+necessarily upstream event time. Use provider time, block, slot, transaction,
+or candle close for source recency; if absent, mark upstream recency unknown.
+Run `validate_task_result` before presenting the typed workflow result; it
+checks structure but cannot authenticate an invented receipt.
 
 ## Runtime status handling
 

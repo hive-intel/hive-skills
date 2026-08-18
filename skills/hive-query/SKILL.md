@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "discovery"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-query — Route Crypto Questions Through Hive
@@ -18,12 +18,22 @@ data.
 
 ## Routing procedure
 
-1. Read `hive://toolsets` or call `search_tools` with the user's intent.
-2. Select one canonical task toolset.
-3. Ask for missing identifiers before execution if the toolset requires them.
-4. Call `get_api_endpoint_schema` for the exact tool you plan to call.
-5. Call the exact endpoint through `invoke_api_endpoint`.
-6. Report freshness, provider/runtime status, and any missing-data caveats.
+1. Read the compact `hive://toolsets` index or call `search_tools` with the
+   user's intent. Use its tool and toolset cursors instead of requesting a
+   broad catalog.
+2. Select one canonical task toolset and the single compact `routes[]` entry
+   whose trigger/question matches the user's intent. Preserve its `route_id`;
+   broad `coverageCatalog` arrays are not an execution plan.
+3. Ask for the route's missing identifiers before execution.
+4. Follow its ordered steps, calling `get_api_endpoint_schema` for each exact
+   primary tool. Use a fallback only under that step's published condition.
+5. Call reads through `invoke_api_endpoint`. For an explicitly approved
+   Hive-native state change, use `invoke_stateful_endpoint`; never auto-approve
+   that router.
+6. Stop when the route's stop condition is met or four material calls are used.
+   Copy server-returned `_hive` blocks into the task receipt and run
+   `validate_task_result` with the selected `route_id` before presenting a structured result.
+7. Report source recency, provider/runtime status, and missing-data caveats.
 
 Read `references/root-mcp-workflow.md` when you need the bigger picture: how
 the root MCP endpoint is organized, what resources exist, or how to navigate
@@ -77,8 +87,8 @@ Use this structure for Hive-backed answers:
 
 ## Evidence
 - Provider/source: [provider names]
-- Freshness: [Hive execution fetched_at plus provider timestamp, block, or slot when relevant]
-- Runtime status: [ok/missing_key/plan_required/rate_limited/degraded/failing]
+- Freshness: [Hive fetched_at/observed_at/cache_age_ms plus provider timestamp, block, or slot; upstream recency unknown if absent]
+- Runtime status: [ok/invalid_input/missing_key/plan_required/rate_limited/degraded/failing]
 
 ## Caveats
 [Fallbacks, stale data, unavailable providers, missing identifiers, limits.]
@@ -87,10 +97,35 @@ Use this structure for Hive-backed answers:
 [Only include if a retry, deeper check, or user choice is needed.]
 ```
 
+## Evidence receipt (required)
+
+End every Hive-backed answer with a compact receipt built from the `_hive`
+object on each material tool response:
+
+- `provider`, `tool`, `fetched_at`, `observed_at`, `cache_age_ms`, and `runtime_status`
+- `receipt_id`, `receipt_version`, server/build version, and SHA-256 input/result
+  digests when present (self-checks, not signatures)
+- `source`, `cache_status`, `truncated`, and any warnings
+- canonical chain/entity identifiers plus block, slot, transaction, or query ids
+  present in provider data
+- material provider disagreements and how they were handled
+- checks that were unavailable, gated, stale, truncated, or intentionally not run
+- a `claims[]` citation from each material statement to exact receipt IDs
+- one `coverage[]` entry for every canonical evidence phase, with each gap explained
+
+Never turn missing evidence into a clean result, silently merge conflicting
+provider values, or omit a degraded/fallback call from the receipt.
+`observed_at` is Hive's first-observation/original cache-population time, and
+`cache_age_ms: 0` only means newly retrieved by Hive. Use provider time, block,
+slot, transaction, or candle close for upstream recency; if absent, mark it
+unknown. `validate_task_result` checks structure but cannot authenticate an
+invented receipt.
+
 ## Runtime status handling
 
-Hive uses `ok`, `missing_key`, `plan_required`, `rate_limited`, `degraded`,
-and `failing`. Do not treat a non-`ok` provider state as a missing tool. Tell
+Hive uses `ok`, `invalid_input`, `missing_key`, `plan_required`,
+`rate_limited`, `degraded`, and `failing`. Do not treat a non-`ok` provider
+state as a missing tool. Tell
 the user which task/tool failed, why, and what can be retried or upgraded.
 
 ## Guardrails

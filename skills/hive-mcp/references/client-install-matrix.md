@@ -6,56 +6,88 @@ Hive's default product path is the hosted remote MCP endpoint:
 https://mcp.hiveintelligence.xyz/mcp
 ```
 
-Use local `stdio` when the user is developing Hive itself, self-hosting, testing
-provider keys, or using a desktop client that only supports local commands.
+After the hosted deployment exposes protected-resource metadata, interactive
+clients should store only this public URL and complete Hive OAuth in the
+browser. Use local `stdio` for Hive development, self-hosting, provider key
+experiments, or clients that cannot use remote Streamable HTTP. Use a Hive API
+key for headless backends and as the trusted-client fallback while OAuth is not
+active.
 
 ## Package boundaries
 
 | Package | Role | Who installs it |
 | --- | --- | --- |
-| `hive-intelligence` | MCP server, CLI, local stdio runtime, bundled skills installer. Exposes `hive`, `hive-intelligence`, and `hive-mcp` binaries. | End users, self-hosters, desktop clients |
-| `hive-mcp-client` | Published typed adapter (npm) for apps and agent frameworks; install via `npm install hive-mcp-client`. | App/backend developers integrating Hive in TypeScript |
-| `@hiveintelligence/agent-skills` | Skills-only corpus for agents and skill registries | Agents, skill package managers, docs mirrors |
-| `hive-intel` | Packaged user-facing CLI/docs surface retained for compatibility | Existing CLI/docs consumers |
+| `hive-intelligence` | MCP server, CLI, local stdio runtime, bundled skills installer | End users, self-hosters, desktop clients |
+| `hive-mcp-client` | Published typed adapter for apps and agent frameworks | TypeScript app/backend developers |
+| `@hiveintelligence/agent-skills` | Skills-only corpus for agents and skill registries | Agents and skill package managers |
+| `hive-intel` | Private compatibility CLI/docs workspace; not a public install path | Existing internal compatibility consumers |
 
 ## Recommended setup flow
 
-1. Install hosted MCP first unless the user explicitly needs local `stdio`.
-2. Add the API key as `Authorization: Bearer <HIVE_API_KEY>`.
-3. Install or copy skills so the agent knows the workflow layer.
-4. Verify by asking a live query and checking that the agent calls Hive instead
-   of answering from memory.
+1. Check the protected-resource metadata below. Do not advertise a native
+   OAuth install until it returns a valid document.
+2. Start with the hosted MCP unless the user explicitly needs local `stdio`.
+3. Add only the canonical URL; let the client discover OAuth and open consent.
+4. Install the skills so the agent uses task toolsets and evidence receipts.
+5. Ask one live, read-only question and require a Hive tool call plus source,
+   observation/fetch timing, runtime status, and receipt ID.
 
-## Hosted remote MCP
-
-Use for most agents:
+## Hosted remote MCP (interactive)
 
 ```json
 {
   "mcpServers": {
     "hive": {
-      "url": "https://mcp.hiveintelligence.xyz/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_HIVE_API_KEY"
-      }
+      "url": "https://mcp.hiveintelligence.xyz/mcp"
     }
   }
 }
 ```
 
+Client-specific native paths:
+
+| Client | Install route | Workflow skills |
+| --- | --- | --- |
+| Codex | `codex mcp add hive --url https://mcp.hiveintelligence.xyz/mcp`, then `codex mcp login hive` | `~/.codex/skills` |
+| VS Code / Copilot | Official `vscode:mcp/install` link or `code --add-mcp` | `~/.copilot/skills` |
+| Gemini CLI | URL-only `mcpServers.hive.httpUrl` entry | `~/.gemini/skills` |
+| Grok | Manual custom connector at `https://grok.com/connectors` | MCP resources; no local skill directory |
+
+Codex, VS Code, and Gemini installation can be handled by `hive init --all`
+when their local client directories are detected. Grok remains manual because
+it does not expose a supported local programming surface.
+
+If the protected-resource metadata URL returns 404, hosted OAuth has not been
+activated on that deployment. Do not advertise the URL-only install until it
+returns valid metadata:
+
+```text
+https://mcp.hiveintelligence.xyz/.well-known/oauth-protected-resource/mcp
+```
+
+## Headless remote MCP
+
+For a backend or API agent that cannot open browser authorization, inject the
+key from secret storage at runtime:
+
+```http
+Authorization: Bearer $HIVE_API_KEY
+```
+
+Never put that header in an install deeplink, published plugin, shared config,
+prompt, screenshot, or browser bundle.
+
 ## Local stdio MCP
 
-Use when a client requires a command-based server:
+Local stdio does not require a hosted Hive key. Optional upstream provider keys
+belong in the local environment when the user wants provider-key experiments:
 
 ```json
 {
   "mcpServers": {
-    "hive": {
+    "hive-local": {
       "command": "npx",
-      "args": ["-y", "-p", "hive-intelligence@latest", "hive"],
-      "env": {
-        "HIVE_API_KEY": "YOUR_HIVE_API_KEY"
-      }
+      "args": ["-y", "-p", "hive-intelligence@latest", "hive"]
     }
   }
 }
@@ -63,16 +95,16 @@ Use when a client requires a command-based server:
 
 ## Skills install
 
-Use the Hive CLI for detected local clients — it configures MCP and copies the
-bundled skills in one step:
+After protected-resource metadata is live, configure detected clients with
+URL-only hosted entries and copy the bundled skills:
 
 ```bash
-npx -y -p hive-intelligence@latest hive init --all --browser
+npx -y -p hive-intelligence@latest hive init --all
 ```
 
 Or install the skills alone from the public registry:
 
 ```bash
-npx skills add hive-intel/hive-skills            # all skills
-npx skills add hive-intel/hive-skills --list     # browse without installing
+npx skills add hive-intel/hive-skills
+npx skills add hive-intel/hive-skills --list
 ```

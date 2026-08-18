@@ -4,12 +4,15 @@
     {
       "id": 1,
       "prompt": "Watch this Ethereum wallet and alert me when it transfers more than $100k.",
-      "expected_output": "Uses stateful_monitoring, creates or updates a wallet monitor with an Ethereum address target, a large-transfer rule, and a durable cadence.",
+      "expected_output": "Uses stateful_monitoring, creates or updates a wallet monitor with an Ethereum address target, a large-transfer rule, a durable cadence, and returns the mutation's runtime receipt.",
       "files": [],
       "assertions": [
         "Chooses stateful_monitoring.",
+        "Selects create_monitor and follows its create-then-verify route within four calls.",
         "Maps the request to a wallet monitor target.",
-        "States that Hive workers execute the monitor later."
+        "Explains the exact state change, obtains explicit user approval, and routes it through invoke_stateful_endpoint.",
+        "States that Hive workers execute the monitor later.",
+        "Includes the mutation receipt id and runtime status, then structurally validates the task result."
       ]
     },
     {
@@ -19,6 +22,7 @@
       "files": [],
       "assertions": [
         "Calls hive_list_monitors before updating.",
+        "Uses invoke_api_endpoint for the list and invoke_stateful_endpoint only after explicit approval for the pause.",
         "Uses hive_update_monitor for pause behavior.",
         "Does not claim success if auth or persistence is unavailable."
       ]
@@ -41,6 +45,7 @@
       "files": [],
       "assertions": [
         "Uses hive_remember_fact for durable user-scoped memory.",
+        "Obtains explicit approval and uses invoke_stateful_endpoint for the memory write.",
         "Does not encode the preference only in the chat transcript.",
         "Uses hive_generate_monitor_report when asked for future monitor context."
       ]

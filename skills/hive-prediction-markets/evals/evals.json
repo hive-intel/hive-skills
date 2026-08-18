@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "Find active prediction markets about the next Fed decision and show the top outcomes with liquidity caveats.",
-      "expected_output": "Uses prediction_markets, searches markets/events first, resolves candidate ids, bounds results, and reports price/liquidity/freshness caveats.",
+      "expected_output": "Uses prediction_markets, searches markets/events first, resolves candidate ids, bounds results, reports price/liquidity/freshness caveats, and ends with a runtime evidence receipt.",
       "files": [],
       "assertions": [
         "Chooses prediction_markets.",
+        "Selects event_landscape for event discovery or market_odds for an exact market and preserves route_id.",
         "Searches markets/events before stats.",
-        "States market price is not ground truth."
+        "States market price is not ground truth.",
+        "Includes receipt ids and missing evidence."
       ]
     },
     {

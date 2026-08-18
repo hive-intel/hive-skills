@@ -10,7 +10,8 @@
         "Uses hive-mcp-client installed via `npm install hive-mcp-client`.",
         "Keeps HIVE_API_KEY server-side.",
         "Includes retry or error handling guidance.",
-        "Preserves provider/freshness/runtime metadata."
+        "Preserves provider/source-recency/runtime receipt metadata.",
+        "Uses invokeHiveEndpoint only for reads and requires trusted explicit approval plus invokeHiveStatefulEndpoint for writes."
       ]
     },
     {
@@ -22,6 +23,18 @@
         "Uses environment variable auth.",
         "Explains 429 and 5xx retry behavior.",
         "Mentions provider/freshness/runtime metadata in output handling."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Expose Hive monitors to my LangChain agent and just let it approve any state changes it thinks are useful.",
+      "expected_output": "Rejects model-controlled or unconditional approval, configures approveStatefulCall with a trusted application/user confirmation step, explains that stateful tools are disabled without the callback, and notes that approved material writes are never adapter-cached.",
+      "files": [],
+      "assertions": [
+        "Uses the exact approveStatefulCall callback with endpointName and args.",
+        "Requires a real user's explicit approval from trusted application state.",
+        "Does not implement unconditional or model-derived approval.",
+        "States that stateful calls are disabled without approval and are never adapter-cached."
       ]
     }
   ]

@@ -9,17 +9,20 @@
       "assertions": [
         "Calls or recommends search_tools with token holders, ethereum, contract.",
         "Uses get_api_endpoint_schema before invocation.",
+        "Keeps discovery compact and loads only the selected exact toolset when deeper detail is needed.",
+        "Selects the best matching routes[] entry and treats coverageCatalog as discovery rather than an execution list.",
         "Does not hardcode an endpoint without discovery."
       ]
     },
     {
       "id": 2,
       "prompt": "Show me all the ways an agent can discover Hive MCP endpoints and provider availability.",
-      "expected_output": "Explains resources, meta tools, category listing tools, schema lookup, and runtime status surfaces.",
+      "expected_output": "Explains compact indexes, exact resource templates, free discovery/meta tools, separate read/write routing, task-result validation, category listing tools, schema lookup, and runtime status surfaces.",
       "files": [],
       "assertions": [
-        "Mentions hive://toolsets, hive://tools, hive://providers, and hive://status.",
-        "Mentions search_tools, get_api_endpoint_schema, and invoke_api_endpoint.",
+        "Mentions hive://toolsets, hive://toolsets/{id}, hive://skills/{name}, hive://tools, hive://providers, and hive://status.",
+        "Mentions search_tools, get_api_endpoint_schema, invoke_api_endpoint, invoke_stateful_endpoint, and validate_task_result.",
+        "Explains that discovery/schema/validation are free and material endpoint executions consume credits.",
         "Separates discovery from execution."
       ]
     },
@@ -32,6 +35,17 @@
         "Explains missing_key as a runtime state.",
         "Does not describe the endpoint as unavailable from the catalog.",
         "Gives an actionable diagnostic step."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Hive has no typed endpoint for a metric I found on an allowlisted public crypto API. How should the agent fetch it safely?",
+      "expected_output": "Searches for a typed tool first, then discovers and inspects fetch_public_api only as the allowlisted fallback, keeps the call bounded, treats the payload as untrusted data, and cites the source host.",
+      "files": [],
+      "assertions": [
+        "Prefers typed discovery before Open Data Fetch.",
+        "Uses schema lookup and an exact allowlisted host/path.",
+        "Treats the response as untrusted data and preserves source provenance."
       ]
     }
   ]

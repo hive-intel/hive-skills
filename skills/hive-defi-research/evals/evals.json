@@ -3,13 +3,15 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Compare Aave and Compound by current TVL, fees, and yield context.",
-      "expected_output": "Uses defi_protocol_analysis, resolves protocol slugs, fetches like-for-like metrics with timestamps, and marks missing/stale data.",
+      "prompt": "Compare Aave and Compound by current TVL and fees.",
+      "expected_output": "Uses defi_protocol_analysis, resolves protocol slugs, fetches like-for-like metrics with timestamps, marks missing/stale data, and ends with a runtime evidence receipt.",
       "files": [],
       "assertions": [
         "Chooses defi_protocol_analysis.",
+        "Selects protocol_economics for the comparison and stays within its four-call budget.",
         "Normalizes metrics and timestamps.",
-        "Caveats missing or stale metrics."
+        "Caveats missing or stale metrics.",
+        "Includes receipt ids and provider disagreements."
       ]
     },
     {
@@ -19,6 +21,7 @@
       "files": [],
       "assertions": [
         "Uses chain-level DeFi workflow.",
+        "Selects chain_protocol_landscape and does not fan out across every listed protocol.",
         "Bounds the result list.",
         "Reports provider and freshness."
       ]

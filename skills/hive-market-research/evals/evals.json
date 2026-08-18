@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "What's the live BTC price, recent liquidity context, and source freshness?",
-      "expected_output": "Routes to market_research, resolves BTC to a provider-supported id, inspects schemas, makes bounded price/liquidity calls, and reports provider/freshness/runtime status.",
+      "expected_output": "Routes to market_research, resolves BTC to a provider-supported id, inspects schemas, makes bounded price/liquidity calls, and ends with a runtime evidence receipt.",
       "files": [],
       "assertions": [
         "Chooses market_research.",
+        "Selects spot_snapshot or derivatives_positioning from routes[] and follows its ordered calls instead of the coverage catalog.",
         "Uses schema lookup before execution.",
-        "Reports provider and freshness."
+        "Reports provider and freshness.",
+        "Includes receipt ids and cache/fallback status."
       ]
     },
     {
@@ -21,6 +23,17 @@
         "Treats Kraken as a venue-specific request.",
         "Bounds order book depth.",
         "Caveats venue-specific liquidity."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Pull eighteen months of BTC funding history from Hyperliquid and tell me whether the returned series covers the full range.",
+      "expected_output": "Routes to market_research, discovers the typed Hyperliquid funding endpoint, inspects its schema, uses a bounded time range and pagination controls, and checks completion/continuation metadata before calling the point count a total.",
+      "files": [],
+      "assertions": [
+        "Filters discovery to Hyperliquid and uses the typed provider tool.",
+        "Bounds the scan with time and pagination arguments.",
+        "Checks pointCountIsTotal or range.complete and reports any continuation."
       ]
     }
   ]

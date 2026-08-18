@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "Check whether this Ethereum transaction succeeded and summarize the receipt evidence.",
-      "expected_output": "Uses network_infrastructure, asks for chain/tx hash if missing, inspects receipt schema, and reports block/freshness/runtime status.",
+      "expected_output": "Uses network_infrastructure, asks for chain/tx hash if missing, inspects the transaction receipt schema, and ends with a Hive runtime evidence receipt containing block/freshness/status and receipt ids.",
       "files": [],
       "assertions": [
         "Chooses network_infrastructure.",
+        "Selects transaction_debug for this intent and follows its ordered receipt/log steps.",
         "Requires chain and transaction hash.",
-        "Reports receipt/block evidence."
+        "Reports transaction receipt/block evidence.",
+        "Includes Hive runtime receipt ids."
       ]
     },
     {
