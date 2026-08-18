@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "Use Hive MCP to investigate whether wallet 0x28C6c06298d514Db089934071355E5743bf21d60 has meaningful Ethereum token activity. Show the tools you would call and the caveats.",
-      "expected_output": "Routes through wallet_investigation, requests or infers eth-mainnet, looks up schemas before exact endpoint calls, avoids inventing activity, and reports provider/runtime/freshness caveats.",
+      "expected_output": "Routes through wallet_investigation, loads its exact workflow policy, requests or infers eth-mainnet, looks up schemas before bounded read calls, obeys the material-call budget and stop conditions, avoids inventing activity, and ends with a structurally validated receipt containing provider source-recency evidence, runtime/cache/fallback state, and server-minted receipt ids for every material call.",
       "files": [],
       "assertions": [
         "Mentions wallet_investigation or the wallet task toolset.",
+        "Selects wallet_investigation plus the matching portfolio_snapshot or recent_activity route and preserves route_id.",
         "Uses get_api_endpoint_schema before invoke_api_endpoint.",
-        "Reports provider/runtime status and does not answer from memory."
+        "Reports provider/runtime status and does not answer from memory.",
+        "Includes an evidence receipt with exact _hive receipt ids and uses validate_task_result."
       ]
     },
     {
@@ -30,8 +32,8 @@
       "files": [],
       "assertions": [
         "Chooses prediction_markets.",
-        "Uses search_tools or hive://toolsets before endpoint selection.",
-        "Reports freshness and source caveats."
+        "Uses compact search_tools or hive://toolsets, then loads the exact prediction_markets workflow before endpoint selection.",
+        "Reports provider source recency separately from Hive observed_at/cache_age_ms and marks upstream recency unknown when absent."
       ]
     }
   ]

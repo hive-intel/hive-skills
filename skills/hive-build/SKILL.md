@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "build"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-build — Integrate Hive Into App Code
@@ -92,8 +92,11 @@ async def briefing():
         await h.aclose()
 ```
 
-Hive bills one credit per call regardless of concurrency, so fan-out
-is the right default for research / reporting agents.
+Hive bills one credit per material endpoint execution. Discovery, schema
+inspection, category listing, resource reads, and task-result validation cost
+zero. Do not fan out by default: load one exact task toolset, follow its call
+budget and stop conditions, and add a fallback only to resolve a material gap,
+unavailable source, staleness concern, or disagreement.
 
 ### TypeScript (Node, serverless, edge)
 
@@ -101,6 +104,15 @@ Prefer the typed MCP adapter for TypeScript applications when you control the
 server application. It centralizes the root MCP contract, auth headers, schema
 lookup, endpoint invocation, retries, metadata resources, and normalized result
 parsing.
+
+`invokeHiveEndpoint` is deliberately read-only. For a known Hive-native write,
+show the exact effect to the user, obtain approval in trusted application UI,
+then call `invokeHiveStatefulEndpoint`. LangChain stateful tools require the
+application callback
+`approveStatefulCall({ endpointName, args }): boolean | Promise<boolean>`;
+without it they are disabled. Never implement the callback as unconditional
+approval or derive consent from model output. Stateful material calls are never
+adapter-cached.
 
 ```bash
 npm install hive-mcp-client
@@ -305,6 +317,8 @@ Every successful response shares the same shape:
   "meta": {
     "tool": "get_price",
     "fetched_at": "2026-04-25T07:42:11Z",
+    "observed_at": "2026-04-25T07:42:10Z",
+    "cache_age_ms": 1000,
     "duration_ms": 94,
     "provider": "coingecko",
     "runtime_status": "ok",
@@ -314,9 +328,14 @@ Every successful response shares the same shape:
 }
 ```
 
-Read `meta.fetched_at` for freshness and `meta.provider`/`meta.source` for
-provenance. `meta.runtime_status` is the per-call status
-(`ok`/`missing_key`/`plan_required`/`rate_limited`/`degraded`/`failing`) and a
+Read `meta.fetched_at` as Hive retrieval completion.
+`meta.observed_at` is when Hive first saw the response and
+`meta.cache_age_ms` is time since that observation; neither proves the
+provider's underlying datum is current. Use provider block, slot, candle close,
+or timestamp for source recency, and mark recency unknown when none is present.
+Read `meta.provider`/`meta.source` for provenance.
+`meta.runtime_status` is the per-call status
+(`ok`/`invalid_input`/`missing_key`/`plan_required`/`rate_limited`/`degraded`/`failing`) and a
 non-`ok` value still returns a usable envelope. `meta.cache_status` is a string
 (`miss`/`hit`/`bypass`/`unknown`), not a boolean — read it only if the user asks
 about caching.
@@ -324,7 +343,7 @@ about caching.
 ## Runtime status handling
 
 When building on Hive, preserve runtime status in your own response model:
-`ok`, `missing_key`, `plan_required`, `rate_limited`, `degraded`, and
+`ok`, `invalid_input`, `missing_key`, `plan_required`, `rate_limited`, `degraded`, and
 `failing`. Do not remove a tool from the application because a provider is
 temporarily gated; surface the state and retry or fall back based on the class.
 

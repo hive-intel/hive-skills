@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "wallet"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-wallet-investigation — Wallet Investigation
@@ -17,8 +17,10 @@ asked.
 
 ## Task toolset and identifiers
 
-Toolset: `wallet_investigation` (confirm against `hive://toolsets` if routing
-fails).
+Toolset: `wallet_investigation`. Read
+`hive://toolsets/wallet_investigation` before execution; it is authoritative
+for the current output schema, material-call budget, phases, fallback
+condition, and stop conditions.
 
 - Required: wallet address and chain/network — unless the user explicitly asks
   for multi-chain.
@@ -28,6 +30,12 @@ Ask for the chain when an EVM address appears without context: the same
 address exists on every EVM chain with different state, so guessing the chain
 silently changes the answer. For Solana wallets, hand off to
 `hive-solana-analysis`.
+
+Before choosing endpoints, select exactly one matching entry from the exact
+workflow's routes[]. Follow its ordered steps, use a fallback only under that
+step's published condition, stop at four material calls, and preserve the
+selected route_id in the typed result. The broad coverageCatalog is discovery
+coverage, not an execution plan.
 
 ## Procedure
 
@@ -74,7 +82,7 @@ and did anything big move this week?"
 - Balances: [native + top token holdings]
 - Activity: [transfers in window, counterparties]
 - Exposure: [NFTs, DeFi positions, PnL if requested]
-- Provenance: [provider, fetched_at, runtime status per call]
+- Provenance: [provider, fetched_at, observed_at/cache_age_ms, runtime status per call]
 
 ## Caveats
 [Missing chains, truncated history, unavailable enrichment, degraded providers.]
@@ -90,10 +98,34 @@ and did anything big move this week?"
   inflating portfolio value.
 - Absence of DeFi/NFT data may reflect provider coverage, not true absence.
 
+## Evidence receipt (required)
+
+End every Hive-backed answer with a compact receipt built from the `_hive`
+object on each material tool response:
+
+- `provider`, `tool`, `fetched_at`, `observed_at`, `cache_age_ms`, and `runtime_status`
+- `receipt_id`, `receipt_version`, server/build version, and SHA-256 input/result
+  digests when present (self-checks, not signatures)
+- `source`, `cache_status`, `truncated`, and any warnings
+- canonical chain/entity identifiers plus block, slot, transaction, or query ids
+  present in provider data
+- material provider disagreements and how they were handled
+- checks that were unavailable, gated, stale, truncated, or intentionally not run
+- a `claims[]` citation from each material statement to exact receipt IDs
+- one `coverage[]` entry for every canonical evidence phase, with each gap explained
+
+Never turn missing evidence into a clean result, silently merge conflicting
+provider values, or omit a degraded/fallback call from the receipt.
+`observed_at` is Hive's first-observation/original cache-population time, and
+`cache_age_ms: 0` only means newly retrieved by Hive. Use provider time, block,
+slot, transaction, or candle close for source recency; if absent, mark it
+unknown. Run `validate_task_result` before presenting the typed workflow result;
+it checks structure but cannot authenticate an invented receipt.
+
 ## Runtime status handling
 
-Classify provider failures as `missing_key`, `plan_required`, `rate_limited`,
-`degraded`, or `failing`. A single blocked enrichment tool should not suppress
+Classify provider failures as `invalid_input`, `missing_key`, `plan_required`,
+`rate_limited`, `degraded`, or `failing`. A single blocked enrichment tool should not suppress
 balances or transfers that did succeed.
 
 ## Hand-offs

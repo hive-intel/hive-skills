@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "setup"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-build-onboarding — Get a Hive API Key
@@ -72,7 +72,7 @@ The key's prefix tells you the environment:
   capped tools)
 - `hive_dev_` — local development key
 
-The user can have multiple keys. Plan-tier limits: Demo = 1 key,
+The user can have multiple keys. Plan-tier limits: Demo = 5 keys,
 Analyst = 10, Pro = 25, Enterprise = 100.
 
 ## When the user can't find an old key
@@ -109,7 +109,7 @@ disabled.
 
 If the user wants higher limits than the Demo tier, direct them to
 https://www.hiveintelligence.xyz/dashboard/plans — always quote limits and
-prices from that page, since they change. As of June 2026 the tiers are:
+prices from that page, since they change. As of July 2026 the tiers are:
 
 - Analyst — $129/month, 500k credits, 500 req/min, 10 keys
 - Pro — $499/month, 2M credits, 1k req/min, 25 keys
@@ -117,8 +117,9 @@ prices from that page, since they change. As of June 2026 the tiers are:
 
 ## Runtime status handling
 
-After onboarding, Hive tools may still report `missing_key`, `plan_required`,
-`rate_limited`, `degraded`, or `failing` for provider-specific runtime states.
+After onboarding, Hive tools may still report `invalid_input`, `missing_key`,
+`plan_required`, `rate_limited`, `degraded`, or `failing` for provider-specific
+runtime states.
 Do not create a new Hive key for provider plan gates; explain the blocked
 provider/tool and the upgrade or retry path.
 

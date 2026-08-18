@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "nft"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-nft-research — NFT Research
@@ -16,7 +16,9 @@ rarity, spam — with collection-level and token-level facts kept separate.
 
 ## Task toolset and identifiers
 
-Toolset: `nft_research` (confirm against `hive://toolsets` if routing fails).
+Toolset: `nft_research`. Read `hive://toolsets/nft_research` before execution;
+it is authoritative for the current output schema, material-call budget,
+phases, fallback condition, and stop conditions.
 
 - Required: chain/network plus collection contract, token id, asset id, or
   wallet address.
@@ -25,6 +27,12 @@ Toolset: `nft_research` (confirm against `hive://toolsets` if routing fails).
 Ask for chain and contract/asset identifiers when the user gives only a
 collection name — collection names are not unique and copycat collections are
 common.
+
+Before choosing endpoints, select exactly one matching entry from the exact
+workflow's routes[]. Follow its ordered steps, use a fallback only under that
+step's published condition, stop at four material calls, and preserve the
+selected route_id in the typed result. The broad coverageCatalog is discovery
+coverage, not an execution plan.
 
 ## Procedure
 
@@ -69,7 +77,7 @@ User: "What's the floor and recent sales for this collection? Contract is
 - Identity/metadata: [name, supply, verification]
 - Market: [floor + marketplace, sales in window]
 - Ownership/rarity/spam: [if requested]
-- Provenance: [provider, fetched_at, runtime status per call]
+- Provenance: [provider, fetched_at, observed_at/cache_age_ms, runtime status per call]
 
 ## Caveats
 [Marketplace coverage, stale floor, missing metadata, degraded data.]
@@ -83,6 +91,30 @@ User: "What's the floor and recent sales for this collection? Contract is
 - NFT metadata can be mutable or stale.
 - Spam checks can lag new collections — "not flagged" is not "authentic".
 - Floor price is marketplace-scoped unless the provider aggregates.
+
+## Evidence receipt (required)
+
+End every Hive-backed answer with a compact receipt built from the `_hive`
+object on each material tool response:
+
+- `provider`, `tool`, `fetched_at`, `observed_at`, `cache_age_ms`, and `runtime_status`
+- `receipt_id`, `receipt_version`, server/build version, and SHA-256 input/result
+  digests when present (self-checks, not signatures)
+- `source`, `cache_status`, `truncated`, and any warnings
+- canonical chain/entity identifiers plus block, slot, transaction, or query ids
+  present in provider data
+- material provider disagreements and how they were handled
+- checks that were unavailable, gated, stale, truncated, or intentionally not run
+- a `claims[]` citation from each material statement to exact receipt IDs
+- one `coverage[]` entry for every canonical evidence phase, with each gap explained
+
+Never turn missing evidence into a clean result, silently merge conflicting
+provider values, or omit a degraded/fallback call from the receipt.
+`observed_at` is Hive's first-observation/original cache-population time, and
+`cache_age_ms: 0` only means newly retrieved by Hive. Use provider time, block,
+slot, transaction, or candle close for source recency; if absent, mark it
+unknown. Run `validate_task_result` before presenting the typed workflow result;
+it checks structure but cannot authenticate an invented receipt.
 
 ## Runtime status handling
 

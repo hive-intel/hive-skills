@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "I'm about to ape into PEPE on Ethereum, contract 0x6982508145454Ce325dDbE47a25d4ec3d2311933. Run real diligence first — liquidity, holders, anything sketchy.",
-      "expected_output": "Uses token_diligence, preserves exact chain/contract, plans metadata/liquidity/holder/risk checks, and reports caveats without trading advice.",
+      "expected_output": "Uses token_diligence, preserves exact chain/contract, plans metadata/liquidity/holder/risk checks, reports caveats without trading advice, and ends with a runtime evidence receipt.",
       "files": [],
       "assertions": [
         "Chooses token_diligence.",
+        "Selects quick_safety or holder_concentration from routes[] and preserves route_id.",
         "Requires exact chain and contract.",
-        "Includes liquidity and risk evidence sections."
+        "Includes liquidity and risk evidence sections.",
+        "Includes _hive receipt ids and missing evidence."
       ]
     },
     {

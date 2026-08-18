@@ -4,11 +4,12 @@
     {
       "id": 1,
       "prompt": "Set up Hive MCP in Cursor and make sure the agent also gets Hive skills.",
-      "expected_output": "Provides Cursor MCP config for hosted HTTP, Authorization header format, reload step, and skills install path.",
+      "expected_output": "Provides a URL-only Cursor hosted MCP config, OAuth browser authorization, reload step, first-value verification, and skills install path.",
       "files": [],
       "assertions": [
         "Uses https://mcp.hiveintelligence.xyz/mcp.",
-        "Shows Authorization: Bearer YOUR_HIVE_API_KEY.",
+        "Does not put an API key or Authorization header in the interactive config.",
+        "Explains that Cursor completes Hive OAuth in the browser.",
         "Mentions Hive skills installation or package."
       ]
     },

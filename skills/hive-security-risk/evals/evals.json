@@ -4,12 +4,14 @@
     {
       "id": 1,
       "prompt": "Is it safe to approve this spender for my ERC-20 token?",
-      "expected_output": "Uses security_risk, asks for chain/token/owner/spender if missing, checks approval risk, and avoids signing guidance until risk is resolved.",
+      "expected_output": "Uses security_risk, asks for chain/token/owner/spender if missing, checks approval risk, avoids signing guidance until risk is resolved, and ends with a runtime evidence receipt.",
       "files": [],
       "assertions": [
         "Chooses security_risk.",
+        "Selects approval_risk for this intent and uses only its conditional fallback when required.",
         "Requests missing approval identifiers.",
-        "Does not tell the user to sign while risk is unresolved."
+        "Does not tell the user to sign while risk is unresolved.",
+        "Includes receipt ids and any unavailable checks."
       ]
     },
     {

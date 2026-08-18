@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "defi"
   requires_network: "true"
-version: 1.1.0
+version: 1.3.0
 ---
 
 # hive-defi-research — DeFi Protocol Analysis
@@ -16,14 +16,22 @@ DeFi questions with like-for-like, timestamped metrics.
 
 ## Task toolset and identifiers
 
-Toolset: `defi_protocol_analysis` (confirm against `hive://toolsets` if
-routing fails).
+Toolset: `defi_protocol_analysis`. Read
+`hive://toolsets/defi_protocol_analysis` before execution; it is authoritative
+for the current output schema, material-call budget, phases, fallback
+condition, and stop conditions.
 
 - Required: protocol name/slug or chain.
 - Optional: time window, metric type, yield pool, stablecoin, bridge.
 
 Ask for a protocol slug, or choose a provider-supported slug only when the
 user clearly named the protocol.
+
+Before choosing endpoints, select exactly one matching entry from the exact
+workflow's routes[]. Follow its ordered steps, use a fallback only under that
+step's published condition, stop at four material calls, and preserve the
+selected route_id in the typed result. The broad coverageCatalog is discovery
+coverage, not an execution plan.
 
 ## Procedure
 
@@ -68,7 +76,7 @@ more?"
 - TVL: [value + as-of]
 - Fees/revenue: [value + window]
 - Yields/stablecoins/bridges: [if requested]
-- Provenance: [provider, fetched_at, runtime status per call]
+- Provenance: [provider, fetched_at, observed_at/cache_age_ms, runtime status per call]
 
 ## Caveats
 [Unavailable metrics, stale snapshots, methodology differences.]
@@ -84,6 +92,30 @@ more?"
 - High APY without liquidity/risk context is not a recommendation.
 - Provider methodology can differ across chains and protocols.
 
+## Evidence receipt (required)
+
+End every Hive-backed answer with a compact receipt built from the `_hive`
+object on each material tool response:
+
+- `provider`, `tool`, `fetched_at`, `observed_at`, `cache_age_ms`, and `runtime_status`
+- `receipt_id`, `receipt_version`, server/build version, and SHA-256 input/result
+  digests when present (self-checks, not signatures)
+- `source`, `cache_status`, `truncated`, and any warnings
+- canonical chain/entity identifiers plus block, slot, transaction, or query ids
+  present in provider data
+- material provider disagreements and how they were handled
+- checks that were unavailable, gated, stale, truncated, or intentionally not run
+- a `claims[]` citation from each material statement to exact receipt IDs
+- one `coverage[]` entry for every canonical evidence phase, with each gap explained
+
+Never turn missing evidence into a clean result, silently merge conflicting
+provider values, or omit a degraded/fallback call from the receipt.
+`observed_at` is Hive's first-observation/original cache-population time, and
+`cache_age_ms: 0` only means newly retrieved by Hive. Use provider time, block,
+slot, transaction, or candle close for source recency; if absent, mark it
+unknown. Run `validate_task_result` before presenting the typed workflow result;
+it checks structure but cannot authenticate an invented receipt.
+
 ## Runtime status handling
 
 Treat unreliable or temporarily unavailable DeFi endpoints as `degraded`. Do
@@ -93,4 +125,4 @@ not silently omit a metric; mark it unavailable with the runtime status.
 
 - Token price/market questions → `hive-market-research`.
 - One pool's depth and trades → `hive-dex-pool-analysis`.
-- Protocol token safety → `hive-token-diligence` or `hive-security-risk`.
+- Protocol token risk → `hive-token-diligence` or `hive-security-risk`.
