@@ -22,7 +22,7 @@
     },
     {
       "title": "Crypto Research Workflows",
-      "description": "Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, prediction-market, and stateful monitoring analysis.",
+      "description": "Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, and stateful monitoring analysis.",
       "skills": [
         "hive-market-research",
         "hive-token-diligence",
@@ -33,7 +33,6 @@
         "hive-nft-research",
         "hive-solana-analysis",
         "hive-network-infrastructure",
-        "hive-prediction-markets",
         "hive-stateful-monitoring"
       ]
     }
