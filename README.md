@@ -1,6 +1,6 @@
 # Hive Skills — Agent Skills for Crypto Intelligence
 
-> Live crypto, wallet, token, DeFi, DEX, NFT, Solana, security, market, and prediction-market workflows for Claude Code, Cursor, Codex, and any agent — powered by the [Hive Intelligence](https://www.hiveintelligence.xyz) MCP server.
+> Live crypto, wallet, token, DeFi, DEX, NFT, Solana, security, network, and market workflows for Claude Code, Cursor, Codex, and any agent — powered by the [Hive Intelligence](https://www.hiveintelligence.xyz) MCP server.
 
 [![Install with skills.sh](https://skills.sh/b/hive-intel/hive-skills)](https://skills.sh/hive-intel/hive-skills)
 [![Agent Skills Spec](https://img.shields.io/badge/Agent%20Skills-Specification-blue)](https://agentskills.io)
@@ -51,7 +51,7 @@ Skills that teach agents how to discover task toolsets, inspect schemas, and exe
 
 ### Crypto Research Workflows
 
-Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, prediction-market, and stateful monitoring analysis.
+Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, and stateful monitoring analysis.
 
 | Skill | Use when |
 | --- | --- |
@@ -64,7 +64,6 @@ Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, n
 | `hive-nft-research` | Research NFT collections, ownership, metadata, floors, sales, rarity, and spam checks. |
 | `hive-solana-analysis` | Analyze Solana wallets, SPL accounts, DAS assets, parsed transactions, and priority fees. |
 | `hive-network-infrastructure` | Read chain state, gas, blocks, receipts, logs, transaction status, and RPC diagnostics. |
-| `hive-prediction-markets` | Research prediction markets, events, outcomes, market stats, traders, holders, and trades. |
 | `hive-stateful-monitoring` | Create, list, update, and archive durable crypto monitors, alerts, scheduled reports, and agent memory. |
 
 ## Try it

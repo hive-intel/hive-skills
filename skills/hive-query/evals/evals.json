@@ -27,12 +27,12 @@
     },
     {
       "id": 3,
-      "prompt": "Find active prediction markets about the next US Fed decision and summarize the top outcomes with source caveats.",
-      "expected_output": "Routes to prediction_markets, searches for market/event tools, inspects schemas, bounds result limits, and cites source, freshness, and missing data caveats.",
+      "prompt": "Compare current funding for a tokenized TSLA perp across the RWA venues and flag which side looks crowded, with source caveats.",
+      "expected_output": "Routes to rwa_perp_analysis, loads its exact workflow, resolves the exact market symbol per venue, inspects schemas, bounds result limits, and cites provider source recency, runtime status, and missing-venue caveats.",
       "files": [],
       "assertions": [
-        "Chooses prediction_markets.",
-        "Uses compact search_tools or hive://toolsets, then loads the exact prediction_markets workflow before endpoint selection.",
+        "Chooses rwa_perp_analysis.",
+        "Uses compact search_tools or hive://toolsets, then loads the exact rwa_perp_analysis workflow before endpoint selection.",
         "Reports provider source recency separately from Hive observed_at/cache_age_ms and marks upstream recency unknown when absent."
       ]
     }
