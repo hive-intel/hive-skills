@@ -6,7 +6,7 @@ metadata:
   package: "@hiveintelligence/agent-skills"
   category: "stateful-monitoring"
   requires_network: "true"
-version: 1.3.0
+version: 1.4.0
 ---
 
 # hive-stateful-monitoring — Stateful Monitoring
@@ -25,8 +25,8 @@ material-call budget, phases, fallback condition, stop conditions, and the
 read/write routing policy.
 
 Required identifiers: monitor kind and target object. Worker-supported monitor
-kinds are `wallet`, `token`, `protocol`, `market`, `prediction_market`,
-`watchlist_digest`, `token_discovery_risk`, and `risk_watch`.
+kinds are `wallet`, `token`, `protocol`, `market`, `watchlist_digest`,
+`token_discovery_risk`, and `risk_watch`.
 
 Before choosing endpoints, select exactly one matching entry from the exact
 workflow's routes[]. Follow its ordered steps, use a fallback only under that
@@ -78,7 +78,7 @@ User: "Watch this Ethereum wallet and tell me when it moves more than $100k."
 User: "Send every customer a daily crypto watchlist brief."
 
 Create a `watchlist_digest` monitor per B2B subject with saved wallets,
-tokens, protocols, markets, and optional prediction markets in the target —
+tokens, protocols, and markets in the target —
 after reading the B2B reference above.
 
 ## Evidence receipt (required)
