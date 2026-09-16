@@ -1,6 +1,6 @@
-# Hive Skills — Agent Skills for Crypto Intelligence
+# Hive Skills: Agent Skills for Crypto Intelligence
 
-> Live crypto, wallet, token, DeFi, DEX, NFT, Solana, security, network, and market workflows for Claude Code, Cursor, Codex, and any agent — powered by the [Hive Intelligence](https://www.hiveintelligence.xyz) MCP server.
+> Live crypto, wallet, token, DeFi, DEX, NFT, Solana, security, network, prediction-market, and market workflows for Claude Code, Cursor, Codex, and any agent, powered by the [Hive Intelligence](https://www.hiveintelligence.xyz) MCP server.
 
 [![Install with skills.sh](https://skills.sh/b/hive-intel/hive-skills)](https://skills.sh/hive-intel/hive-skills)
 [![Agent Skills Spec](https://img.shields.io/badge/Agent%20Skills-Specification-blue)](https://agentskills.io)
@@ -24,10 +24,18 @@ Skills are also bundled in the `hive-intelligence` npm package (`npx -y -p hive-
 
 ## Prerequisites
 
-- **Hosted Hive MCP (default):** `https://mcp.hiveintelligence.xyz/mcp` — works with a single Hive API key, no provider setup. Start with the `hive-mcp` skill to wire it up, or `hive-build-onboarding` to get a key.
-- **Local stdio / self-host:** optional, for your own provider keys — the `hive-mcp` skill covers both paths.
+- **Hosted Hive MCP (default):** `https://mcp.hiveintelligence.xyz/mcp`. Works with a single Hive API key and no provider setup. Start with the `hive-mcp` skill to wire it up, or `hive-build-onboarding` to get a key.
+- **Local stdio / self-host:** optional, for your own provider keys. The `hive-mcp` skill covers both paths.
 
 ## Skill catalog
+
+### Start here
+
+The one skill to install first: live crypto intelligence on MCP or the hive CLI, with setup, routing, credits, error handling, and feedback built in.
+
+| Skill | Use when |
+| --- | --- |
+| `hive` | One skill for live crypto intelligence on MCP or the hive CLI: setup, routing, the Hive loop, credits and errors, feedback, and archived derivatives history. |
 
 ### Setup and Build
 
@@ -37,7 +45,7 @@ Skills for installing Hive MCP, getting API keys, using the Hive CLI, and integr
 | --- | --- |
 | `hive-mcp` | Add Hive's MCP server to Claude Code, Cursor, VS Code, Windsurf, Claude Desktop, ChatGPT, or Gemini CLI. Per-client instructions. |
 | `hive-build-onboarding` | Walk the user through browser-based sign-in. Use when the user has no API key or cannot find theirs. |
-| `hive-cli` | Use the `hive` CLI inline from a chat — query prices, scan wallets, check token security, automate briefings. |
+| `hive-cli` | Use the `hive` CLI inline from a chat: query prices, scan wallets, check token security, automate briefings. |
 | `hive-build` | Integrate Hive into app code via REST or MCP SDK. Python, TypeScript, Go, Java, Rust patterns with retry / async / typed responses. |
 
 ### Discovery and Routing
@@ -51,7 +59,7 @@ Skills that teach agents how to discover task toolsets, inspect schemas, and exe
 
 ### Crypto Research Workflows
 
-Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, and stateful monitoring analysis.
+Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, prediction-market, and stateful monitoring analysis.
 
 | Skill | Use when |
 | --- | --- |
@@ -64,6 +72,7 @@ Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, n
 | `hive-nft-research` | Research NFT collections, ownership, metadata, floors, sales, rarity, and spam checks. |
 | `hive-solana-analysis` | Analyze Solana wallets, SPL accounts, DAS assets, parsed transactions, and priority fees. |
 | `hive-network-infrastructure` | Read chain state, gas, blocks, receipts, logs, transaction status, and RPC diagnostics. |
+| `hive-prediction-markets` | Research Polymarket prediction markets: events, market-implied odds, order books, odds history, and wallet positions. |
 | `hive-stateful-monitoring` | Create, list, update, and archive durable crypto monitors, alerts, scheduled reports, and agent memory. |
 
 ## Try it
@@ -83,7 +92,7 @@ Answers should report provider provenance, data freshness, and runtime status.
 
 ## How it works
 
-Each skill follows the [Agent Skills spec](https://agentskills.io): a `SKILL.md` with YAML `name` + `description` and progressive disclosure — metadata loads at startup, full instructions load on activation, and where a skill carries genuinely deep material (per-client install matrices, root-MCP architecture, B2B subject signing) it lives in `references/` and loads only when needed. Every skill also ships `evals/` with execution test cases and trigger evals. Every Hive skill preserves the same loop: **discovery → schema lookup → bounded execution → diagnostics → provenance-aware answer.**
+Each skill follows the [Agent Skills spec](https://agentskills.io): a `SKILL.md` with YAML `name` + `description` and progressive disclosure: metadata loads at startup, full instructions load on activation, and where a skill carries genuinely deep material (per-client install matrices, root-MCP architecture, B2B subject signing) it lives in `references/` and loads only when needed. Every skill also ships `evals/` with execution test cases and trigger evals. Every Hive skill preserves the same loop: **discovery → schema lookup → bounded execution → diagnostics → provenance-aware answer.**
 
 ## Trust & provenance
 
@@ -95,7 +104,7 @@ Claude Desktop, Claude Code, Cursor, Windsurf, VS Code (Copilot Chat), OpenAI Re
 
 ## Contributing
 
-This repository is an auto-generated mirror of the Hive monorepo. Report issues or request changes via [GitHub Issues](https://github.com/hive-intel/hive-skills/issues) or support@hiveintelligence.xyz — upstream fixes sync back here.
+This repository is an auto-generated mirror of the Hive monorepo. Report issues or request changes via [GitHub Issues](https://github.com/hive-intel/hive-skills/issues) or support@hiveintelligence.xyz. Upstream fixes sync back here.
 
 ## Resources
 
@@ -106,4 +115,4 @@ This repository is an auto-generated mirror of the Hive monorepo. Report issues 
 
 ## License
 
-MIT — see [LICENSE](./LICENSE). Skills are MIT licensed; the Hive MCP server itself is a hosted product.
+MIT. See [LICENSE](./LICENSE). Skills are MIT licensed; the Hive MCP server itself is a hosted product.

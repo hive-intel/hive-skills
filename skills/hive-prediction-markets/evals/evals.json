@@ -1,0 +1,29 @@
+{
+  "skill_name": "hive-prediction-markets",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Find active prediction markets about the next Fed decision and show the top outcomes with liquidity caveats.",
+      "expected_output": "Uses prediction_markets, searches Polymarket markets first, resolves candidate slugs, bounds results, reports price, liquidity, and freshness caveats, and ends with a runtime evidence receipt.",
+      "files": [],
+      "assertions": [
+        "Chooses prediction_markets.",
+        "Selects polymarket_odds_snapshot for an odds read and preserves route_id.",
+        "Searches markets before books or history.",
+        "States market price is not ground truth.",
+        "Includes receipt ids and missing evidence."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "For this Polymarket wallet, summarize its open positions and recent trades.",
+      "expected_output": "Uses the exact wallet address, fetches bounded positions and activity through polymarket_trader_flow, and reports provider and runtime status.",
+      "files": [],
+      "assertions": [
+        "Uses the exact wallet address.",
+        "Bounds positions and activity.",
+        "Reports provider and runtime status."
+      ]
+    }
+  ]
+}

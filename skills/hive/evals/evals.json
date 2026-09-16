@@ -1,0 +1,50 @@
+{
+  "skill_name": "hive",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Show me BTC funding settlements across venues since January 2024 and tell me where funding diverged most.",
+      "expected_output": "Detects the transport, calls archive_get_funding_history (or hive archive funding) with base_coin BTC, a from bound and a limit, reports per-venue rates with settled_at and funding_annualized, names the divergence, and ends with a receipt built from _hive.",
+      "files": [],
+      "assertions": [
+        "Uses the archive funding tool rather than a live venue endpoint.",
+        "Bounds the call with limit and a time window.",
+        "Reports funding_annualized as computed from each row's own interval.",
+        "Ends with receipt ids, provider, and runtime status."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "What is ethereum trading at right now?",
+      "expected_output": "Calls get_token_price with token ethereum on the detected transport, answers with price, provider, and fetch time, and does not print the credit balance.",
+      "files": [],
+      "assertions": [
+        "Uses the hero tool, not a discovery walk.",
+        "Does not answer from memory.",
+        "Reports provider and fetched_at."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have no Hive account. Can you still check whether 0x6982508145454Ce325dDbE47a25d4ec3d2311933 is a honeypot?",
+      "expected_output": "Runs check_token_safety keyless without asking for a key first; on ANON_QUOTA_EXCEEDED shows the keyless-exhausted message once with the setup incantation and does not retry.",
+      "files": [],
+      "assertions": [
+        "Tries the call before mentioning keys.",
+        "Handles ANON_QUOTA_EXCEEDED by message, not retry.",
+        "Never asks the user to paste a key into chat."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "That funding answer was useless, it only showed one exchange.",
+      "expected_output": "Asks once whether to send feedback, and on yes calls hive feedback or report_feedback with a one-line summary and the tool name, then retries the question with a cross-venue call.",
+      "files": [],
+      "assertions": [
+        "Asks before submitting feedback.",
+        "Keeps the feedback message to one line without keys or addresses.",
+        "Re-attempts with the cross-venue archive tool."
+      ]
+    }
+  ]
+}

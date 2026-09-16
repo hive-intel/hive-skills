@@ -3,6 +3,13 @@
   "notGrouped": "bottom",
   "groupings": [
     {
+      "title": "Start here",
+      "description": "The one skill to install first: live crypto intelligence on MCP or the hive CLI, with setup, routing, credits, error handling, and feedback built in.",
+      "skills": [
+        "hive"
+      ]
+    },
+    {
       "title": "Setup and Build",
       "description": "Skills for installing Hive MCP, getting API keys, using the Hive CLI, and integrating Hive into application code.",
       "skills": [
@@ -22,7 +29,7 @@
     },
     {
       "title": "Crypto Research Workflows",
-      "description": "Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, and stateful monitoring analysis.",
+      "description": "Focused workflows for market, token, wallet, security, DEX, DeFi, NFT, Solana, network, prediction-market, and stateful monitoring analysis.",
       "skills": [
         "hive-market-research",
         "hive-token-diligence",
@@ -33,6 +40,7 @@
         "hive-nft-research",
         "hive-solana-analysis",
         "hive-network-infrastructure",
+        "hive-prediction-markets",
         "hive-stateful-monitoring"
       ]
     }

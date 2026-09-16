@@ -15,7 +15,12 @@
     {
       "name": "hive-cli",
       "path": "../skills/hive-cli/SKILL.md",
-      "description": "Use the `hive` CLI inline from a chat — query prices, scan wallets, check token security, automate briefings."
+      "description": "Use the `hive` CLI inline from a chat: query prices, scan wallets, check token security, automate briefings."
+    },
+    {
+      "name": "hive",
+      "path": "../skills/hive/SKILL.md",
+      "description": "One skill for live crypto intelligence on MCP or the hive CLI: setup, routing, the Hive loop, credits and errors, feedback, and archived derivatives history."
     },
     {
       "name": "hive-mcp",
@@ -86,6 +91,11 @@
       "name": "hive-network-infrastructure",
       "path": "../skills/hive-network-infrastructure/SKILL.md",
       "description": "Read chain state, gas, blocks, receipts, logs, transaction status, and RPC diagnostics."
+    },
+    {
+      "name": "hive-prediction-markets",
+      "path": "../skills/hive-prediction-markets/SKILL.md",
+      "description": "Research Polymarket prediction markets: events, market-implied odds, order books, odds history, and wallet positions."
     },
     {
       "name": "hive-stateful-monitoring",

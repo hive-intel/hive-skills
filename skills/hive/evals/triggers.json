@@ -1,0 +1,15 @@
+[
+  { "query": "BTC funding history across exchanges since 2024", "should_trigger": true },
+  { "query": "what is solana trading at right now", "should_trigger": true },
+  { "query": "is this token a honeypot 0x6982508145454Ce325dDbE47a25d4ec3d2311933", "should_trigger": true },
+  { "query": "compare basis between binance and hyperliquid for ETH over the last quarter", "should_trigger": true },
+  { "query": "set up hive in this project", "should_trigger": true },
+  { "query": "polymarket odds on the next fed cut", "should_trigger": true },
+  { "query": "run the hive cli to get the top defi protocols by tvl", "should_trigger": true },
+  { "query": "what does this wallet hold 0xd8dA6BF26964aF9D7eEd9e03E51415D37aA96045", "should_trigger": true },
+  { "query": "explain how perpetual funding rates work in theory", "should_trigger": false },
+  { "query": "write a python function that parses a csv", "should_trigger": false },
+  { "query": "what was bitcoin's price at the 2017 peak", "should_trigger": false },
+  { "query": "should I buy ethereum", "should_trigger": false },
+  { "query": "summarize this whitepaper", "should_trigger": false }
+]
